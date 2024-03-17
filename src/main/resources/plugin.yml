@@ -1,0 +1,4 @@
+name: SurivalDebugStick
+version: '${project.version}'
+main: de.janschuri.SurvivalDebugStick.Main
+api-version: '1.20'

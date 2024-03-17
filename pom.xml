@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+        <!ELEMENT project (modelVersion|groupId|artifactId|version|packaging|name|build|repositories|dependencies|properties)*>
+        <!ATTLIST project
+                xmlns CDATA #REQUIRED
+                xmlns:xsi CDATA #REQUIRED
+                xsi:schemaLocation CDATA #REQUIRED>
+        <!ELEMENT modelVersion (#PCDATA)>
+        <!ELEMENT groupId (#PCDATA)>
+        <!ELEMENT artifactId (#PCDATA)>
+        <!ELEMENT version (#PCDATA)>
+        <!ELEMENT packaging (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT build (defaultGoal|plugins)*>
+        <!ELEMENT defaultGoal (#PCDATA)>
+        <!ELEMENT plugins (#PCDATA)>
+        <!ELEMENT repositories (repository)*>
+        <!ELEMENT repository (id|url)*>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT url (#PCDATA)>
+        <!ELEMENT dependencies (dependency)*>
+        <!ELEMENT dependency (groupId|artifactId|version|scope)*>
+        <!ELEMENT scope (#PCDATA)>
+        <!ELEMENT properties (java.version|project.build.sourceEncoding)*>
+        <!ELEMENT java.version (#PCDATA)>
+        <!ELEMENT project.build.sourceEncoding (#PCDATA)>
+        ]>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.janschuri</groupId>
+  <artifactId>SurvivalDebugStick</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>SurvivalDebugStick</name>
+    <build>
+        <defaultGoal>clean package install</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.md-5</groupId>
+                <artifactId>specialsource-maven-plugin</artifactId>
+                <version>1.2.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>remap</goal>
+                        </goals>
+                        <id>remap-obf</id>
+                        <configuration>
+                            <srgIn>org.spigotmc:minecraft-server:1.18.1-R0.1-SNAPSHOT:txt:maps-mojang</srgIn>
+                            <reverse>true</reverse>
+                            <remappedDependencies>org.spigotmc:spigot:1.18.1-R0.1-SNAPSHOT:jar:remapped-mojang</remappedDependencies>
+                            <remappedArtifactAttached>true</remappedArtifactAttached>
+                            <remappedClassifierName>remapped-obf</remappedClassifierName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>remap</goal>
+                        </goals>
+                        <id>remap-spigot</id>
+                        <configuration>
+                            <inputFile>${project.build.directory}/${project.artifactId}-${project.version}-remapped-obf.jar</inputFile>
+                            <srgIn>org.spigotmc:minecraft-server:1.18.1-R0.1-SNAPSHOT:csrg:maps-spigot</srgIn>
+                            <remappedDependencies>org.spigotmc:spigot:1.18.1-R0.1-SNAPSHOT:jar:remapped-obf</remappedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+  <repositories>
+      <repository>
+          <id>papermc-repo</id>
+          <url>https://repo.papermc.io/repository/maven-public/</url>
+      </repository>
+      <repository>
+          <id>sonatype</id>
+          <url>https://oss.sonatype.org/content/groups/public/</url>
+      </repository>
+      <repository>
+          <id>spigot-repo</id>
+          <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+      </repository>
+      <repository>
+          <id>codemc-nms</id>
+          <url>https://repo.codemc.io/repository/nms/</url>
+      </repository>
+  </repositories>
+
+  <dependencies>
+      <dependency>
+          <groupId>io.papermc.paper</groupId>
+          <artifactId>paper-api</artifactId>
+          <version>1.20.4-R0.1-SNAPSHOT</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.spigotmc</groupId>
+          <artifactId>spigot-api</artifactId>
+          <version>1.20.4-R0.1-SNAPSHOT</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.spigotmc</groupId>
+          <artifactId>spigot</artifactId>
+          <version>1.20.4-R0.1-SNAPSHOT</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>io.papermc.paper</groupId>
+          <artifactId>paper-server</artifactId>
+          <version>${paper.version}</version>
+          <scope>provided</scope>
+          <classifier>mojang-mapped</classifier>
+      </dependency>
+  </dependencies>
+
+  <properties>
+      <java.version>1.8</java.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <paper.version>1.20.4-R0.1-SNAPSHOT</paper.version>
+  </properties>
+</project>
