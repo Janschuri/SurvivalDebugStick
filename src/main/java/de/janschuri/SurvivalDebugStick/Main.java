@@ -1,13 +1,10 @@
 package de.janschuri.SurvivalDebugStick;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ThreadedLevelLightEngine;
-import net.minecraft.server.level.WorldServer;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_20_R3.CraftWorld;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.beykerykt.minecraft.lightapi.common.LightAPI;
+
 public final class Main extends JavaPlugin {
 
     @Override
@@ -19,5 +16,25 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
     }
+    public static void setBlockLighting(World world, Block block, int lightLevel) {
 
+        int blockX = block.getX();
+        int blockY = block.getY();
+        int blockZ = block.getZ();
+
+        String worldName = world.getName();
+
+        LightAPI.get().setLightLevel(worldName, blockX, blockY, blockZ, lightLevel);
+    }
+
+    public static int getBlockLighting(World world, Block block) {
+
+        int blockX = block.getX();
+        int blockY = block.getY();
+        int blockZ = block.getZ();
+
+        String worldName = world.getName();
+
+        return LightAPI.get().getLightLevel(worldName, blockX, blockY, blockZ);
+    }
 }
