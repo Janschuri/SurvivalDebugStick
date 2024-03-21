@@ -1,4 +1,7 @@
-name: SurivalDebugStick
+name: SurvivalDebugStick
 version: '${project.version}'
 main: de.janschuri.SurvivalDebugStick.Main
 api-version: '1.20'
+commands:
+  survivaldebugstick:
+    aliases: [sd]
