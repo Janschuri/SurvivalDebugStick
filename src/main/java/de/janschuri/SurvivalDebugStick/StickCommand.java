@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class StickCommand implements CommandExecutor {
 
-    private final Main plugin;
+    private final SurvivalDebugStick plugin;
 
-    public StickCommand(Main plugin) {
+    public StickCommand(SurvivalDebugStick plugin) {
         this.plugin = plugin;
     }
 
@@ -34,7 +34,7 @@ public class StickCommand implements CommandExecutor {
                 int[] invs = new int[] {};
 
                 ItemMeta meta = item.getItemMeta();
-                meta.getPersistentDataContainer().set(Main.keyStick, PersistentDataType.INTEGER_ARRAY, invs);
+                meta.getPersistentDataContainer().set(SurvivalDebugStick.keyStick, PersistentDataType.INTEGER_ARRAY, invs);
                 item.setItemMeta(meta);
 
                 player.getInventory().addItem(item);

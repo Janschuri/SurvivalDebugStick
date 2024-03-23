@@ -12,10 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public final class Main extends JavaPlugin {
+public final class SurvivalDebugStick extends JavaPlugin {
 
     private static FileConfiguration config;
     public Material storageItem;
+    public static String language;
     private static boolean whitelist = false;
     static String pluginNamespace = "survivaldebugstick";
     static NamespacedKey keyStick = new NamespacedKey(pluginNamespace, "invs");
@@ -46,6 +47,20 @@ public final class Main extends JavaPlugin {
             addMissingProperties(cfgfile, "defaultConfig.yml");
         } else {
             addMissingProperties(cfgfile, "defaultConfig.yml");
+        }
+
+        plugin.saveResource("lang/EN.yml", true);
+        plugin.saveResource("lang/DE.yml", true);
+
+        language = config.getString("language");
+
+        File langfile = new File(plugin.getDataFolder().getAbsolutePath() + "/lang.yml");
+
+        if (!langfile.exists()) {
+            plugin.saveResource("lang.yml", false);
+            addMissingProperties(langfile, "/lang/" + language + ".yml");
+        } else {
+            addMissingProperties(langfile, "/lang/" + language + ".yml");
         }
 
         config = YamlConfiguration.loadConfiguration(cfgfile);
@@ -85,7 +100,7 @@ public final class Main extends JavaPlugin {
     }
 
     public static boolean isAllowedState(String stateEnum, String state) {
-        if (Main.whitelist) {
+        if (SurvivalDebugStick.whitelist) {
             if (blockedStates.containsKey(stateEnum)) {
                 return blockedStates.get(stateEnum).contains(state);
             } else {

@@ -17,9 +17,9 @@ public class BlockClickListener implements Listener {
 
     boolean processingClickEvent = false;
     int blockStateIndex = 0;
-    private final Main plugin;
+    private final SurvivalDebugStick plugin;
 
-    public BlockClickListener(Main plugin) {
+    public BlockClickListener(SurvivalDebugStick plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -27,7 +27,7 @@ public class BlockClickListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getClickedBlock() != null
                 && event.getPlayer().getItemInHand().getItemMeta() != null
-                && event.getPlayer().getItemInHand().getItemMeta().getPersistentDataContainer().has(Main.keyStick)) {
+                && event.getPlayer().getItemInHand().getItemMeta().getPersistentDataContainer().has(SurvivalDebugStick.keyStick)) {
             event.setCancelled(true);
             if (processingClickEvent) return;
             processingClickEvent = true;
@@ -37,78 +37,78 @@ public class BlockClickListener implements Listener {
             BlockState blockState = block.getState();
             List<String> blockStates = new ArrayList<>();
 
-            if (blockData instanceof Directional && Main.isAllowBlockState("directional")) {
+            if (blockData instanceof Directional && SurvivalDebugStick.isAllowBlockState("directional")) {
                 blockStates.add("directional");
             }
-            if (blockData instanceof Orientable && Main.isAllowBlockState("orientable")) {
+            if (blockData instanceof Orientable && SurvivalDebugStick.isAllowBlockState("orientable")) {
                 blockStates.add("orientable");
             }
-            if (blockData instanceof Powerable && Main.isAllowBlockState("powerable")) {
+            if (blockData instanceof Powerable && SurvivalDebugStick.isAllowBlockState("powerable")) {
                 blockStates.add("powerable");
             }
-            if (blockData instanceof Waterlogged && Main.isAllowBlockState("waterlogged")) {
+            if (blockData instanceof Waterlogged && SurvivalDebugStick.isAllowBlockState("waterlogged")) {
                 blockStates.add("waterlogged");
             }
-            if (blockData instanceof Bisected && Main.isAllowBlockState("bisected")) {
+            if (blockData instanceof Bisected && SurvivalDebugStick.isAllowBlockState("bisected")) {
                 blockStates.add("bisected");
             }
-            if (blockData instanceof Ageable && Main.isAllowBlockState("ageable")) {
+            if (blockData instanceof Ageable && SurvivalDebugStick.isAllowBlockState("ageable")) {
                 blockStates.add("ageable");
             }
-            if (blockData instanceof Rail && Main.isAllowBlockState("rail")) {
+            if (blockData instanceof Rail && SurvivalDebugStick.isAllowBlockState("rail")) {
                 blockStates.add("rail");
             }
-            if (blockData instanceof Rotatable && Main.isAllowBlockState("rotatable")) {
+            if (blockData instanceof Rotatable && SurvivalDebugStick.isAllowBlockState("rotatable")) {
                 blockStates.add("rotatable");
             }
-            if (blockData instanceof Stairs && Main.isAllowBlockState("stairs")) {
+            if (blockData instanceof Stairs && SurvivalDebugStick.isAllowBlockState("stairs")) {
                 blockStates.add("stairs");
             }
-            if (blockData instanceof Bed && Main.isAllowBlockState("bed")) {
+            if (blockData instanceof Bed && SurvivalDebugStick.isAllowBlockState("bed")) {
                 blockStates.add("bed");
             }
-            if (blockData instanceof Chest && Main.isAllowBlockState("chest")) {
+            if (blockData instanceof Chest && SurvivalDebugStick.isAllowBlockState("chest")) {
                 blockStates.add("chest");
             }
-            if (blockData instanceof Cake && Main.isAllowBlockState("cake")) {
+            if (blockData instanceof Cake && SurvivalDebugStick.isAllowBlockState("cake")) {
                 blockStates.add("cake");
             }
-            if (blockData instanceof Bamboo && Main.isAllowBlockState("bamboo")) {
+            if (blockData instanceof Bamboo && SurvivalDebugStick.isAllowBlockState("bamboo")) {
                 blockStates.add("bamboo");
             }
-            if (blockData instanceof Openable && Main.isAllowBlockState("openable")) {
+            if (blockData instanceof Openable && SurvivalDebugStick.isAllowBlockState("openable")) {
                 blockStates.add("openable");
             }
-            if (blockData instanceof Beehive && Main.isAllowBlockState("beehive")) {
+            if (blockData instanceof Beehive && SurvivalDebugStick.isAllowBlockState("beehive")) {
                 blockStates.add("beehive");
             }
-            if (blockData instanceof Bell && Main.isAllowBlockState("bell")) {
+            if (blockData instanceof Bell && SurvivalDebugStick.isAllowBlockState("bell")) {
                 blockStates.add("bell");
             }
-            if (blockData instanceof BigDripleaf && Main.isAllowBlockState("big_dripleaf")) {
+            if (blockData instanceof BigDripleaf && SurvivalDebugStick.isAllowBlockState("big_dripleaf")) {
                 blockStates.add("big_dripleaf");
             }
-            if (blockData instanceof Lightable && Main.isAllowBlockState("lightable")) {
+            if (blockData instanceof Lightable && SurvivalDebugStick.isAllowBlockState("lightable")) {
                 blockStates.add("lightable");
             }
-            if (blockData instanceof BrewingStand && Main.isAllowBlockState("brewing_stand_bottles")) {
+            if (blockData instanceof BrewingStand && SurvivalDebugStick.isAllowBlockState("brewing_stand_bottles")) {
                 blockStates.add("brewing_stand_bottle_0");
                 blockStates.add("brewing_stand_bottle_1");
                 blockStates.add("brewing_stand_bottle_2");
             }
-            if (blockData instanceof FaceAttachable && Main.isAllowBlockState("face_attachable")) {
+            if (blockData instanceof FaceAttachable && SurvivalDebugStick.isAllowBlockState("face_attachable")) {
                 blockStates.add("face_attachable");
             }
-            if (blockData instanceof Campfire && Main.isAllowBlockState("campfire")) {
+            if (blockData instanceof Campfire && SurvivalDebugStick.isAllowBlockState("campfire")) {
                 blockStates.add("campfire");
             }
-            if (blockData instanceof Candle && Main.isAllowBlockState("candle")) {
+            if (blockData instanceof Candle && SurvivalDebugStick.isAllowBlockState("candle")) {
                 blockStates.add("candle");
             }
-            if (blockData instanceof Levelled && Main.isAllowBlockState("levelled")) {
+            if (blockData instanceof Levelled && SurvivalDebugStick.isAllowBlockState("levelled")) {
                 blockStates.add("levelled");
             }
-            if (blockData instanceof ChiseledBookshelf && Main.isAllowBlockState("chiseled_bookshelf_slots")) {
+            if (blockData instanceof ChiseledBookshelf && SurvivalDebugStick.isAllowBlockState("chiseled_bookshelf_slots")) {
                 blockStates.add("chiseled_bookshelf_slot_0");
                 blockStates.add("chiseled_bookshelf_slot_1");
                 blockStates.add("chiseled_bookshelf_slot_2");
@@ -116,103 +116,103 @@ public class BlockClickListener implements Listener {
                 blockStates.add("chiseled_bookshelf_slot_4");
                 blockStates.add("chiseled_bookshelf_slot_5");
             }
-            if (blockData instanceof Wall && Main.isAllowBlockState("wall")) {
+            if (blockData instanceof Wall && SurvivalDebugStick.isAllowBlockState("wall")) {
                 blockStates.add("wall_north");
                 blockStates.add("wall_east");
                 blockStates.add("wall_south");
                 blockStates.add("wall_west");
                 blockStates.add("wall_up");
             }
-            if (blockData instanceof MultipleFacing && Main.isAllowBlockState("multiple_facing")) {
+            if (blockData instanceof MultipleFacing && SurvivalDebugStick.isAllowBlockState("multiple_facing")) {
                 MultipleFacing multipleFacing = (MultipleFacing) blockData;
                 List<BlockFace> faces = new ArrayList<>(multipleFacing.getAllowedFaces());
                 for (BlockFace face : faces) {
                     blockStates.add("multiple_facing_" + face.toString().toLowerCase());
                 }
             }
-            if (blockData instanceof Attachable && Main.isAllowBlockState("attachable")) {
+            if (blockData instanceof Attachable && SurvivalDebugStick.isAllowBlockState("attachable")) {
                 blockStates.add("attachable");
             }
-            if (blockData instanceof Gate && Main.isAllowBlockState("gate")) {
+            if (blockData instanceof Gate && SurvivalDebugStick.isAllowBlockState("gate")) {
                 blockStates.add("gate");
             }
-            if (blockData instanceof Snowable && Main.isAllowBlockState("snowable")) {
+            if (blockData instanceof Snowable && SurvivalDebugStick.isAllowBlockState("snowable")) {
                 blockStates.add("snowable");
             }
-            if (blockData instanceof Hangable && Main.isAllowBlockState("hangable")) {
+            if (blockData instanceof Hangable && SurvivalDebugStick.isAllowBlockState("hangable")) {
                 blockStates.add("hangable");
             }
             if (blockData instanceof NoteBlock) {
-                if (Main.isAllowBlockState("noteblock_note")) {
+                if (SurvivalDebugStick.isAllowBlockState("noteblock_note")) {
                     blockStates.add("noteblock_note");
                 }
-                if (Main.isAllowBlockState("noteblock_instrument")) {
+                if (SurvivalDebugStick.isAllowBlockState("noteblock_instrument")) {
                     blockStates.add("noteblock_instrument");
                 }
             }
-            if (blockData instanceof PinkPetals && Main.isAllowBlockState("pink_petals")) {
+            if (blockData instanceof PinkPetals && SurvivalDebugStick.isAllowBlockState("pink_petals")) {
                 blockStates.add("pink_petals");
             }
-            if (blockData instanceof Piston && Main.isAllowBlockState("piston")) {
+            if (blockData instanceof Piston && SurvivalDebugStick.isAllowBlockState("piston")) {
                 blockStates.add("piston");
             }
             if (blockData instanceof PistonHead) {
-                if (Main.isAllowBlockState("piston_head_type")) {
+                if (SurvivalDebugStick.isAllowBlockState("piston_head_type")) {
                     blockStates.add("piston_head_type");
                 }
-                if (Main.isAllowBlockState("piston_head_short")) {
+                if (SurvivalDebugStick.isAllowBlockState("piston_head_short")) {
                     blockStates.add("piston_head_short");
                 }
             }
-            if (blockData instanceof PointedDripstone && Main.isAllowBlockState("dripstone_thickness")) {
+            if (blockData instanceof PointedDripstone && SurvivalDebugStick.isAllowBlockState("dripstone_thickness")) {
                 blockStates.add("dripstone_thickness");
             }
-            if (blockData instanceof Comparator && Main.isAllowBlockState("comparator")) {
+            if (blockData instanceof Comparator && SurvivalDebugStick.isAllowBlockState("comparator")) {
                 blockStates.add("comparator");
             }
-            if (blockData instanceof RedstoneWire && Main.isAllowBlockState("redstone_wire")) {
+            if (blockData instanceof RedstoneWire && SurvivalDebugStick.isAllowBlockState("redstone_wire")) {
                 blockStates.add("redstone_wire_north");
                 blockStates.add("redstone_wire_east");
                 blockStates.add("redstone_wire_south");
                 blockStates.add("redstone_wire_west");
             }
             if (blockData instanceof Repeater) {
-                if (Main.isAllowBlockState("repeater_delay")) {
+                if (SurvivalDebugStick.isAllowBlockState("repeater_delay")) {
                     blockStates.add("repeater_delay");
                 }
-                if (Main.isAllowBlockState("repeater_locked")) {
+                if (SurvivalDebugStick.isAllowBlockState("repeater_locked")) {
                     blockStates.add("repeater_locked");
                 }
             }
-            if (blockData instanceof RespawnAnchor && Main.isAllowBlockState("respawn_anchor")) {
+            if (blockData instanceof RespawnAnchor && SurvivalDebugStick.isAllowBlockState("respawn_anchor")) {
                 blockStates.add("charges");
             }
-            if (blockData instanceof Scaffolding && Main.isAllowBlockState("scaffolding")) {
+            if (blockData instanceof Scaffolding && SurvivalDebugStick.isAllowBlockState("scaffolding")) {
                 blockStates.add("scaffolding");
             }
-            if (blockData instanceof SculkCatalyst && Main.isAllowBlockState("sculk_catalyst")) {
+            if (blockData instanceof SculkCatalyst && SurvivalDebugStick.isAllowBlockState("sculk_catalyst")) {
                 blockStates.add("sculk_catalyst");
             }
-            if (blockData instanceof SculkSensor && Main.isAllowBlockState("sculk_sensor")) {
+            if (blockData instanceof SculkSensor && SurvivalDebugStick.isAllowBlockState("sculk_sensor")) {
                 blockStates.add("sculk_sensor");
             }
-            if (blockData instanceof SculkShrieker && Main.isAllowBlockState("sculk_shrieker")) {
+            if (blockData instanceof SculkShrieker && SurvivalDebugStick.isAllowBlockState("sculk_shrieker")) {
                 blockStates.add("sculk_shrieker");
             }
-            if (blockData instanceof SeaPickle && Main.isAllowBlockState("sea_pickle")) {
+            if (blockData instanceof SeaPickle && SurvivalDebugStick.isAllowBlockState("sea_pickle")) {
                 blockStates.add("sea_pickle");
             }
-            if (blockData instanceof Slab && Main.isAllowBlockState("slab")) {
+            if (blockData instanceof Slab && SurvivalDebugStick.isAllowBlockState("slab")) {
                 blockStates.add("slab");
             }
-            if (blockData instanceof Snow && Main.isAllowBlockState("snow")) {
+            if (blockData instanceof Snow && SurvivalDebugStick.isAllowBlockState("snow")) {
                 blockStates.add("snow");
             }
             if (blockData instanceof TurtleEgg) {
-                if (Main.isAllowBlockState("turtle_egg_hatch")) {
+                if (SurvivalDebugStick.isAllowBlockState("turtle_egg_hatch")) {
                     blockStates.add("turtle_egg_hatch");
                 }
-                if(Main.isAllowBlockState("turtle_egg_eggs")) {
+                if(SurvivalDebugStick.isAllowBlockState("turtle_egg_eggs")) {
                     blockStates.add("turtle_egg_eggs");
                 }
             }
@@ -260,7 +260,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Slab.Type> types = new ArrayList<>();
                         for (Slab.Type state : typesArray) {
-                            if (Main.isAllowedState("slab", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("slab", state.toString().toLowerCase())) {
                                 types.add(state);
                             } else {
                                 if (state == type) {
@@ -300,7 +300,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<SculkSensor.Phase> phases = new ArrayList<>();
                         for (SculkSensor.Phase state : phasesArray) {
-                            if (Main.isAllowedState("sculk_sensor", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("sculk_sensor", state.toString().toLowerCase())) {
                                 phases.add(state);
                             } else {
                                 if (state == phase) {
@@ -366,7 +366,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> connections = new ArrayList<>();
                         for (RedstoneWire.Connection state : connectionsArray) {
-                            if (Main.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 connections.add(state);
                             } else {
                                 if (state == connection) {
@@ -391,7 +391,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> connections = new ArrayList<>();
                         for (RedstoneWire.Connection state : connectionsArray) {
-                            if (Main.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 connections.add(state);
                             } else {
                                 if (state == connection) {
@@ -416,7 +416,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> connections = new ArrayList<>();
                         for (RedstoneWire.Connection state : connectionsArray) {
-                            if (Main.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 connections.add(state);
                             } else {
                                 if (state == connection) {
@@ -441,7 +441,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> connections = new ArrayList<>();
                         for (RedstoneWire.Connection state : connectionsArray) {
-                            if (Main.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 connections.add(state);
                             } else {
                                 if (state == connection) {
@@ -466,7 +466,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Comparator.Mode> modes = new ArrayList<>();
                         for (Comparator.Mode state : modesArray) {
-                            if (Main.isAllowedState("comparator", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("comparator", state.toString().toLowerCase())) {
                                 modes.add(state);
                             } else {
                                 if (state == mode) {
@@ -493,7 +493,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<PointedDripstone.Thickness> thicknesses = new ArrayList<>();
                         for (PointedDripstone.Thickness state : thicknessesArray) {
-                            if (Main.isAllowedState("dripstone_thickness", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("dripstone_thickness", state.toString().toLowerCase())) {
                                 thicknesses.add(state);
                             } else {
                                 if (state == thickness) {
@@ -517,7 +517,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<PistonHead.Type> types = new ArrayList<>();
                         for (PistonHead.Type state : typesArray) {
-                            if (Main.isAllowedState("piston_head_type", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("piston_head_type", state.toString().toLowerCase())) {
                                 types.add(state);
                             } else {
                                 if (state == type) {
@@ -583,7 +583,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Instrument> instruments = new ArrayList<>();
                         for (Instrument state : instrumentsArray) {
-                            if (Main.isAllowedState("noteblock_instrument", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("noteblock_instrument", state.toString().toLowerCase())) {
                                 instruments.add(state);
                             } else {
                                 if (state == instrument) {
@@ -684,7 +684,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> heights = new ArrayList<>();
                         for (Wall.Height state : heightsArray) {
-                            if (Main.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("wall", state.toString().toLowerCase())) {
                                 heights.add(state);
                             } else {
                                 if (state == height) {
@@ -709,7 +709,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> heights = new ArrayList<>();
                         for (Wall.Height state : heightsArray) {
-                            if (Main.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("wall", state.toString().toLowerCase())) {
                                 heights.add(state);
                             } else {
                                 if (state == height) {
@@ -734,7 +734,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> heights = new ArrayList<>();
                         for (Wall.Height state : heightsArray) {
-                            if (Main.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("wall", state.toString().toLowerCase())) {
                                 heights.add(state);
                             } else {
                                 if (state == height) {
@@ -759,7 +759,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> heights = new ArrayList<>();
                         for (Wall.Height state : heightsArray) {
-                            if (Main.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("wall", state.toString().toLowerCase())) {
                                 heights.add(state);
                             } else {
                                 if (state == height) {
@@ -856,7 +856,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<FaceAttachable.AttachedFace> attachedFaces = new ArrayList<>();
                         for (FaceAttachable.AttachedFace state : attachedFacesArray) {
-                            if (Main.isAllowedState("face_attachable", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("face_attachable", state.toString().toLowerCase())) {
                                 attachedFaces.add(state);
                             } else {
                                 if (state == attachedFace) {
@@ -909,7 +909,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<BigDripleaf.Tilt> tilts = new ArrayList<>();
                         for (BigDripleaf.Tilt state : tiltsArray) {
-                            if (Main.isAllowedState("big_dripleaf", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("big_dripleaf", state.toString().toLowerCase())) {
                                 tilts.add(state);
                             } else {
                                 if (state == tilt) {
@@ -937,7 +937,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bell.Attachment> attachments = new ArrayList<>();
                         for (Bell.Attachment state : attachmentsArray) {
-                            if (Main.isAllowedState("bell", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("bell", state.toString().toLowerCase())) {
                                 attachments.add(state);
                             } else {
                                 if (state == attachment) {
@@ -980,7 +980,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bamboo.Leaves> leaves = new ArrayList<>();
                         for (Bamboo.Leaves state : leavesArray) {
-                            if (Main.isAllowedState("bamboo", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("bamboo", state.toString().toLowerCase())) {
                                 leaves.add(state);
                             } else {
                                 if (state == leaf) {
@@ -1014,7 +1014,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Chest.Type> types = new ArrayList<>();
                         for (Chest.Type state : typesArray) {
-                            if (Main.isAllowedState("chest", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("chest", state.toString().toLowerCase())) {
                                 types.add(state);
                             } else {
                                 if (state == type) {
@@ -1039,7 +1039,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bed.Part> parts = new ArrayList<>();
                         for (Bed.Part state : partsArray) {
-                            if (Main.isAllowedState("bed", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("bed", state.toString().toLowerCase())) {
                                 parts.add(state);
                             } else {
                                 if (state == part) {
@@ -1089,7 +1089,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<BlockFace> rotations = new ArrayList<>();
                         for (BlockFace state : rotationsArray) {
-                            if (Main.isAllowedState("rotatable", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("rotatable", state.toString().toLowerCase())) {
                                 rotations.add(state);
                             } else {
                                 if (state == rotation) {
@@ -1111,7 +1111,7 @@ public class BlockClickListener implements Listener {
                         List<Axis> axesArray = new ArrayList<>(orientable.getAxes());
                         List<Axis> axes = new ArrayList<>();
                         for (Axis state : axesArray) {
-                            if (Main.isAllowedState("orientable.axis", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("orientable.axis", state.toString().toLowerCase())) {
                                 axes.add(state);
                             } else {
                                 if (state == axis) {
@@ -1136,7 +1136,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bisected.Half> halfs = new ArrayList<>();
                         for (Bisected.Half state : halfsArray) {
-                            if (Main.isAllowedState("bisected.half", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("bisected.half", state.toString().toLowerCase())) {
                                 halfs.add(state);
                             } else {
                                 if (state == half) {
@@ -1182,7 +1182,7 @@ public class BlockClickListener implements Listener {
                         List<Rail.Shape> shapesArray = new ArrayList<>(rail.getShapes());
                         List<Rail.Shape> shapes = new ArrayList<>();
                         for (Rail.Shape state : shapesArray) {
-                            if (Main.isAllowedState("rail.shape", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("rail.shape", state.toString().toLowerCase())) {
                                 shapes.add(state);
                             } else {
                                 if (state == shape) {
@@ -1210,7 +1210,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Stairs.Shape> shapes = new ArrayList<>();
                         for (Stairs.Shape state : shapesArray) {
-                            if (Main.isAllowedState("stairs.shape", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.isAllowedState("stairs.shape", state.toString().toLowerCase())) {
                                 shapes.add(state);
                             } else {
                                 if (state == shape) {
