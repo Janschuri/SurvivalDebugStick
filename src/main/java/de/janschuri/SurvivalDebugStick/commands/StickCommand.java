@@ -1,5 +1,7 @@
-package de.janschuri.SurvivalDebugStick;
+package de.janschuri.SurvivalDebugStick.commands;
 
+import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
+import de.janschuri.SurvivalDebugStick.config.PluginConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,12 +31,12 @@ public class StickCommand implements CommandExecutor {
             if (args.length < 1) {
 
             } else if (args[0].equalsIgnoreCase("stick")) {
-                ItemStack item = new ItemStack(plugin.storageItem);
+                ItemStack item = new ItemStack(PluginConfig.getStorageItem());
 
                 int[] invs = new int[] {};
 
                 ItemMeta meta = item.getItemMeta();
-                meta.getPersistentDataContainer().set(SurvivalDebugStick.keyStick, PersistentDataType.INTEGER_ARRAY, invs);
+                meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.INTEGER_ARRAY, invs);
                 item.setItemMeta(meta);
 
                 player.getInventory().addItem(item);

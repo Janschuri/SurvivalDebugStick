@@ -1,0 +1,57 @@
+language: EN
+block_states:
+  directional: true
+  orientable: true
+  powerable: true
+  waterlogged: true
+  bisected: true
+  ageable: false
+  rail: true
+  rotatable: true
+  stairs: true
+  bed: true
+  chest: true
+  cake: false
+  bamboo: true
+  openable: true
+  beehive: false
+  bell: true
+  big_dripleaf: true
+  lightable: true
+  brewing_stand_bottles: true
+  face_attachable: true
+  campfire: true
+  candle: false
+  levelled: false
+  chiseled_bookshelf_slots: true
+  wall: true
+  multiple_facing: true
+  attachable: true
+  gate: true
+  snowable: true
+  hangable: true
+  noteblock_note: true
+  noteblock_instrument: true
+  pink_petals: false
+  piston: true
+  piston_head_type: true
+  piston_head_short: true
+  dripstone_thickness: true
+  comparator: true
+  redstone_wire: true
+  repeater_delay: true
+  repeater_locked: true
+  respawn_anchor: false
+  scaffolding: true
+  sculk_catalyst: true
+  sculk_sensor: true
+  sculk_shrieker: true
+  sea_pickle: false
+  slab: true
+  snow: false
+  turtle_egg_hatch: false
+  turtle_egg_eggs: false
+invert_list: false #turns blocked states into a whitelist
+stick_item: blaze_rod
+blocked_states:
+  - slab.double
