@@ -1,56 +1,32 @@
 package de.janschuri.SurvivalDebugStick.commands;
 
-import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
-import de.janschuri.SurvivalDebugStick.config.PluginConfig;
+import de.janschuri.SurvivalDebugStick.commands.subcommands.SurvivalDebugStickSubcommand;
+import de.janschuri.lunaticlib.senders.AbstractSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 
-public class StickCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
 
-    private final SurvivalDebugStick plugin;
+public class StickCommand implements CommandExecutor, TabCompleter {
 
-    public StickCommand(SurvivalDebugStick plugin) {
-        this.plugin = plugin;
+    private final SurvivalDebugStickSubcommand subcommand = new SurvivalDebugStickSubcommand();
+
+    @Override
+    public boolean onCommand(@NotNull org.bukkit.command.CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        AbstractSender commandSender = AbstractSender.getSender(sender);
+        return subcommand.execute(commandSender, args);
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        // Check if the sender is a player
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("Only players can use this command.");
-            return true;
-        } else {
-            Player player = (Player) sender;
-
-            if (args.length < 1) {
-
-            } else if (args[0].equalsIgnoreCase("stick")) {
-                ItemStack item = new ItemStack(PluginConfig.getStorageItem());
-
-                int[] invs = new int[] {};
-
-                ItemMeta meta = item.getItemMeta();
-                meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.INTEGER_ARRAY, invs);
-                item.setItemMeta(meta);
-
-                player.getInventory().addItem(item);
-            } else if (args[0].equalsIgnoreCase("reload")) {
-                if (!sender.hasPermission("survivaldebugstick.admin")) {
-//                    sender.sendMessage(plugin.prefix + plugin.messages.get("no_permission"));
-                } else {
-                    plugin.loadConfig(plugin);
-//                    sender.sendMessage(plugin.prefix + plugin.messages.get("reload"));
-                }
-            }
-        }
-
-        return true;
+    public List<String> onTabComplete(@NotNull org.bukkit.command.CommandSender sender, @NotNull Command cmd, @NotNull String commandLabel, String[] args) {
+        String[] newArgs = new String[args.length + 1];
+        newArgs[0] = "survivaldebugstick";
+        System.arraycopy(args, 0, newArgs, 1, args.length);
+        AbstractSender commandSender = AbstractSender.getSender(sender);
+        return new ArrayList<>(subcommand.tabComplete(commandSender, newArgs));
     }
 
 }

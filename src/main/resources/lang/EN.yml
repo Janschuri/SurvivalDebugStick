@@ -1,6 +1,12 @@
 prefix: "&7[&6SurvivalDebugStick&7] &r"
 messages:
   reload: "&aThe configuration has been reloaded."
+  wrong_usage: "&cWrong usage! Use &6/survivaldebugstick help&c for help."
+  no_permission: "&cYou do not have permission to use this command."
+  #help messages
+  survivaldebugstick_help: "&7SurvivalDebugStick Help"
+  reload_command: "&6/survivaldebugstick reload&7: Reload the configuration."
+  stick_command: "&6/survivaldebugstick stick&7: Get the SurvivalDebugStick."
 block_states:
   directional: "&7Direction: %value%"
   orientable: "&7Orientation: %value%"
