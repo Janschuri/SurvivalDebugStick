@@ -1,9 +1,10 @@
 package de.janschuri.SurvivalDebugStick;
 
-import de.janschuri.SurvivalDebugStick.commands.StickCommand;
-import de.janschuri.SurvivalDebugStick.config.Language;
+import de.janschuri.SurvivalDebugStick.commands.subcommands.SurvivalDebugStickSubcommand;
+import de.janschuri.SurvivalDebugStick.config.LanguageConfig;
 import de.janschuri.SurvivalDebugStick.config.PluginConfig;
 import de.janschuri.SurvivalDebugStick.listener.BlockClickListener;
+import de.janschuri.lunaticlib.platform.bukkit.PlatformImpl;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,10 @@ public final class SurvivalDebugStick extends JavaPlugin {
     public static final String PLUGIN_NAMESPACE = "survivaldebugstick";
     public static final NamespacedKey KEY_STICK = new NamespacedKey(PLUGIN_NAMESPACE, "invs");
     private static Path dataDirectory;
+
+    private static LanguageConfig languageConfig;
+    private static PluginConfig pluginConfig;
+
     static final String[] commands = {
             "survivaldebugstick",
     };
@@ -25,7 +30,7 @@ public final class SurvivalDebugStick extends JavaPlugin {
 
         loadConfig();
         getServer().getPluginManager().registerEvents(new BlockClickListener(this), this);
-        getCommand("survivaldebugstick").setExecutor(new StickCommand());
+        new PlatformImpl().registerCommand(this, new SurvivalDebugStickSubcommand());
     }
 
     @Override
@@ -35,9 +40,21 @@ public final class SurvivalDebugStick extends JavaPlugin {
 
     public static void loadConfig() {
 
-        new PluginConfig(dataDirectory);
-        new Language(dataDirectory, commands);
+        pluginConfig = new PluginConfig(dataDirectory);
+        pluginConfig.load();
+
+        String languageKey = pluginConfig.getLanguageKey();
+        languageConfig = new LanguageConfig(dataDirectory, languageKey);
+        languageConfig.load();
 
 
+    }
+
+    public static LanguageConfig getLanguageConfig() {
+        return languageConfig;
+    }
+
+    public static PluginConfig getPluginConfig() {
+        return pluginConfig;
     }
 }

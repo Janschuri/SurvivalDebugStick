@@ -1,58 +1,61 @@
 prefix: "&7[&6SurvivalDebugStick&7] &r"
 messages:
-  reload: "&aDie Konfiguration wurde neu geladen."
+  no_permission: "&cDu hast keine Berechtigung dazu!"
+  wrong_usage: "&cFalsche Verwendung! Benutze &6/survivaldebugstick help&c für Hilfe."
+  no_console_command: "&cDieser Befehl kann nur von Spielern ausgeführt werden."
+message_format: "%state%: %value%"
 block_states:
-  directional: "&7Ausrichtung: %value%"
-  orientable: "&7Orientierung: %value%"
-  powerable: "&7Strom: %value%"
-  waterlogged: "&7Durchnässt: %value%"
-  bisected: "&7Zweigeteilt: %value%"
-  ageable: "&7Alter: %value%"
-  rail: "&7Schiene: %value%"
-  rotatable: "&7Rotation: %value%"
-  stairs: "&7Treppe: %value%"
-  bed: "&7Bett: %value%"
-  chest: "&7Truhe: %value%"
-  cake: "&7Kuchen: %value%"
-  bamboo: "&7Bambus: %value%"
-  openable: "&7Aufmachbar: %value%"
-  beehive: "&7Bienenstock: %value%"
-  bell: "&7Glocke: %value%"
-  big_dripleaf: "&7Großes Tropfblatt: %value%"
-  lightable: "&7Entzündbar: %value%"
-  brewing_stand_bottles: "&7Flaschen: %value%"
-  face_attachable: "&7Anbringbar: %value%"
-  campfire: "&7Lagerfeuer: %value%"
-  candle: "&7Kerzen: %value%"
-  levelled: "&7Gestuft: %value%"
-  chiseled_bookshelf_slots: "&7Bücherregal: %value%"
-  wall: "&7Mauer: %value%"
-  multiple_facing: "&7Mehrfachausrichtung: %value%"
-  attachable: "&7Anbringbar: %value%"
-  gate: "&7Tor: %value%"
-  snowable: "&7Schnee: %value%"
-  hangable: "&7Hängend: %value%"
-  noteblock_note: "&7Note: %value%"
-  noteblock_instrument: "&7Instrument: %value%"
-  pink_petals: "&7Rosa Blütenblätter: %value%"
-  piston: "&7Kolben: %value%"
-  piston_head_type: "&7Kolbenkopf: %value%"
-  piston_head_short: "&7Kolbenkopf kurz: %value%"
-  dripstone_thickness: "&7Tropfsteinstärke: %value%"
-  comparator: "&7Vergleicher: %value%"
-  redstone_wire: "&7Redstone: %value%"
-  repeater_delay: "&7Verzögerung: %value%"
-  repeater_locked: "&7Verriegelt: %value%"
-  respawn_anchor: "&7Respawnanker: %value%"
-  scaffolding: "&7Gerüst: %value%"
-  sculk_catalyst: "&7Sculk-Katalysator: %value%"
-  sculk_sensor: "&7Sculk-Sensor: %value%"
-  sculk_shrieker: "&7Sculk-Schreier: %value%"
-  sea_pickle: "&7Seegurke: %value%"
-  slab: "&7Platte: %value%"
-  snow: "&7Schnee: %value%"
-  turtle_egg_hatch: "&7Schildkrötenei : %value%"
-  turtle_egg_eggs: "&7Schildkröteneier: %value%"
+  directional: "&7Ausrichtung"
+  orientable: "&7Orientierung"
+  powerable: "&7Strom"
+  waterlogged: "&7Durchnässt"
+  bisected: "&7Zweigeteilt"
+  ageable: "&7Alter"
+  rail: "&7Schiene"
+  rotatable: "&7Rotation"
+  stairs: "&7Treppe"
+  bed: "&7Bett"
+  chest: "&7Truhe"
+  cake: "&7Kuchen"
+  bamboo: "&7Bambus"
+  openable: "&7Aufmachbar"
+  beehive: "&7Bienenstock"
+  bell: "&7Glocke"
+  big_dripleaf: "&7Großes Tropfblatt"
+  lightable: "&7Entzündbar"
+  brewing_stand_bottles: "&7Flaschen"
+  face_attachable: "&7Anbringbar"
+  campfire: "&7Lagerfeuer"
+  candle: "&7Kerzen"
+  levelled: "&7Gestuft"
+  chiseled_bookshelf_slots: "&7Bücherregal"
+  wall: "&7Mauer"
+  multiple_facing: "&7Mehrfachausrichtung"
+  attachable: "&7Anbringbar"
+  gate: "&7Tor"
+  snowable: "&7Schnee"
+  hangable: "&7Hängend"
+  noteblock_note: "&7Note"
+  noteblock_instrument: "&7Instrument"
+  pink_petals: "&7Rosa Blütenblätter"
+  piston: "&7Kolben"
+  piston_head_type: "&7Kolbenkopf"
+  piston_head_short: "&7Kolbenkopf kurz"
+  dripstone_thickness: "&7Tropfsteinstärke"
+  comparator: "&7Vergleicher"
+  redstone_wire: "&7Redstone"
+  repeater_delay: "&7Verzögerung"
+  repeater_locked: "&7Verriegelt"
+  respawn_anchor: "&7Respawnanker"
+  scaffolding: "&7Gerüst"
+  sculk_catalyst: "&7Sculk-Katalysator"
+  sculk_sensor: "&7Sculk-Sensor"
+  sculk_shrieker: "&7Sculk-Schreier"
+  sea_pickle: "&7Seegurke"
+  slab: "&7Platte"
+  snow: "&7Schnee"
+  turtle_egg_hatch: "&7Schildkrötenei "
+  turtle_egg_eggs: "&7Schildkröteneier"
 block_states_enum:
   north_north_east: "&aNord-Nord-Ost"
   north_east: "&aNord-Ost"
@@ -133,12 +136,30 @@ block_states_enum:
   outer_left: "&aAußen Links"
   outer_right: "&aAußen Rechts"
   straight: "&aGerade"
-aliases:
+help_header: "--- --- --- ---[%header%]--- --- --- ---"
+help_footer: "--- --- -[Seite %page%/%pages%]- --- ---"
+commands:
   survivaldebugstick:
-    base_command:
+    aliases:
       - survivaldebugstick
-    stick:
-      - stick
-    reload:
-      - reload
+      - sds
+    help_header: "SurvivalDebugStick-Hilfe"
+    subcommands:
+      reload:
+        aliases:
+          - reload
+        messages:
+          help: "&6/%command% %subcommand% &7- Lade die Konfiguration neu."
+          config_reloaded: "&aDie Konfiguration wurde neu geladen."
+      stick:
+        aliases:
+          - stick
+        messages:
+          help: "&6%/command% %subcommand% &7- Gib dir einen Debug-Stick."
+          stick_given: "&aDu hast den Debug-Stick erhalten."
+      help:
+        aliases:
+          - help
+        messages:
+          help: "&6/%command% %subcommand% &7- Zeige diese Hilfe an."
 

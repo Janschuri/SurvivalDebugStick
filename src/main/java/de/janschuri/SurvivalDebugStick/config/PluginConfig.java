@@ -1,13 +1,13 @@
 package de.janschuri.SurvivalDebugStick.config;
 
+import de.janschuri.lunaticlib.common.config.LunaticConfigImpl;
 import org.bukkit.Material;
 
 import java.nio.file.Path;
 import java.util.*;
 
-public class PluginConfig extends de.janschuri.lunaticlib.config.Config {
+public class PluginConfig extends LunaticConfigImpl {
 
-    private static PluginConfig instance;
     private String stick_item;
     private boolean whitelist = false;
     private final Map<String, Set<String>> blockedStates = new HashMap<>();
@@ -16,9 +16,7 @@ public class PluginConfig extends de.janschuri.lunaticlib.config.Config {
 
 
     public PluginConfig(Path dataDirectory) {
-        super(dataDirectory, "config.yml");
-        instance = this;
-        load();
+        super(dataDirectory, "config.yml", "config.yml");
     }
 
     public void load() {
@@ -47,24 +45,20 @@ public class PluginConfig extends de.janschuri.lunaticlib.config.Config {
         }
     }
 
-    public static PluginConfig getConfig() {
-        return instance;
+    public String getLanguageKey() {
+        return language;
     }
 
-    public static String getLanguageKey() {
-        return getConfig().language;
-    }
-
-    public static boolean isAllowedState(String stateEnum, String state) {
-        if (getConfig().whitelist) {
-            if (getConfig().blockedStates.containsKey(stateEnum)) {
-                return getConfig().blockedStates.get(stateEnum).contains(state);
+    public boolean isAllowedState(String stateEnum, String state) {
+        if (whitelist) {
+            if (blockedStates.containsKey(stateEnum)) {
+                return blockedStates.get(stateEnum).contains(state);
             } else {
                 return false;
             }
         } else {
-            if (getConfig().blockedStates.containsKey(stateEnum)) {
-                return !getConfig().blockedStates.get(stateEnum).contains(state);
+            if (blockedStates.containsKey(stateEnum)) {
+                return !blockedStates.get(stateEnum).contains(state);
             } else {
                 return true;
             }
@@ -72,11 +66,11 @@ public class PluginConfig extends de.janschuri.lunaticlib.config.Config {
         }
     }
 
-    public static boolean isAllowBlockState (String blockState){
-        return getConfig().blockStates.get(blockState);
+    public boolean isAllowBlockState (String blockState){
+        return blockStates.get(blockState);
     }
 
-    public static Material getStorageItem() {
-        return Material.valueOf(getConfig().stick_item.toUpperCase());
+    public Material getStorageItem() {
+        return Material.valueOf(stick_item.toUpperCase());
     }
 }

@@ -2,9 +2,9 @@ package de.janschuri.SurvivalDebugStick.commands.subcommands;
 
 import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
 import de.janschuri.SurvivalDebugStick.commands.Subcommand;
-import de.janschuri.SurvivalDebugStick.config.PluginConfig;
-import de.janschuri.lunaticlib.senders.AbstractPlayerSender;
-import de.janschuri.lunaticlib.senders.AbstractSender;
+import de.janschuri.lunaticlib.CommandMessageKey;
+import de.janschuri.lunaticlib.PlayerSender;
+import de.janschuri.lunaticlib.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -13,23 +13,32 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class StickSubcommand extends Subcommand {
 
-    private static final String PERMISSION = "survivaldebugstick.admin";
-    private static final String MAIN_COMMAND = "survivaldebugstick";
-    private static final String NAME = "stick";
+    CommandMessageKey stickGivenMK = new CommandMessageKey(this, "stick_given");
 
-    protected StickSubcommand() {
-        super(MAIN_COMMAND, NAME, PERMISSION);
+    @Override
+    public String getName() {
+        return "stick";
     }
 
     @Override
-    public boolean execute(AbstractSender sender, String[] strings) {
-        if (!(sender instanceof AbstractPlayerSender)) {
-            sender.sendMessage(language.getPrefix() + language.getMessage("no_console_command"));
-        } else if (!sender.hasPermission(PERMISSION)) {
-            sender.sendMessage(language.getPrefix() + language.getMessage("no_permission"));
+    public String getPermission() {
+        return "survivaldebugstick.admin";
+    }
+
+    @Override
+    public SurvivalDebugStickSubcommand getParentCommand() {
+        return new SurvivalDebugStickSubcommand();
+    }
+
+    @Override
+    public boolean execute(Sender sender, String[] strings) {
+        if (!(sender instanceof PlayerSender)) {
+            sender.sendMessage(getMessage(NO_CONSOLE_COMMAND_MK));
+        } else if (!sender.hasPermission(getPermission())) {
+            sender.sendMessage(getMessage(NO_PERMISSION_MK));
         } else {
-            AbstractPlayerSender player = (AbstractPlayerSender) sender;
-            ItemStack item = new ItemStack(PluginConfig.getStorageItem());
+            PlayerSender player = (PlayerSender) sender;
+            ItemStack item = new ItemStack(SurvivalDebugStick.getPluginConfig().getStorageItem());
 
             int[] invs = new int[]{};
 
@@ -39,6 +48,9 @@ public class StickSubcommand extends Subcommand {
 
             Player p = Bukkit.getPlayer(player.getUniqueId());
             p.getInventory().addItem(item);
+
+            player.sendMessage(getMessage(stickGivenMK));
+
         }
         return true;
     }

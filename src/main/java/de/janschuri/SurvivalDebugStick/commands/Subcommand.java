@@ -1,20 +1,18 @@
 package de.janschuri.SurvivalDebugStick.commands;
 
-import de.janschuri.SurvivalDebugStick.config.Language;
-import de.janschuri.lunaticlib.commands.AbstractSubcommand;
+import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
+import de.janschuri.SurvivalDebugStick.config.LanguageConfig;
+import de.janschuri.lunaticlib.MessageKey;
+import de.janschuri.lunaticlib.common.command.AbstractLunaticCommand;
 
-import java.util.List;
+public abstract class Subcommand extends AbstractLunaticCommand {
 
-public abstract class Subcommand extends AbstractSubcommand {
-    protected Subcommand(String mainCommand, String name, String permission) {
-        super(Language.getLanguage(), mainCommand, name, permission);
-    }
+    protected static final MessageKey NO_PERMISSION_MK = new MessageKey("no_permission");
+    protected static final MessageKey WRONG_USAGE_MK = new MessageKey("wrong_usage");
+    protected static final MessageKey NO_CONSOLE_COMMAND_MK = new MessageKey("no_console_command");
 
-    protected Subcommand(String mainCommand, String name, String permission, List<String> params) {
-        super(Language.getLanguage(), mainCommand, name, permission, params);
-    }
-
-    protected Subcommand(String mainCommand, String name, String permission, AbstractSubcommand[] subcommands) {
-        super(Language.getLanguage(), mainCommand, name, permission, subcommands);
+    @Override
+    public LanguageConfig getLanguageConfig() {
+        return SurvivalDebugStick.getLanguageConfig();
     }
 }

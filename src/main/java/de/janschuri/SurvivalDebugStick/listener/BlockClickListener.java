@@ -1,8 +1,7 @@
 package de.janschuri.SurvivalDebugStick.listener;
 
 import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
-import de.janschuri.SurvivalDebugStick.config.Language;
-import de.janschuri.SurvivalDebugStick.config.PluginConfig;
+import de.janschuri.lunaticlib.platform.bukkit.util.EventUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -36,82 +35,86 @@ public class BlockClickListener implements Listener {
             processingClickEvent = true;
             Block block = event.getClickedBlock();
 
+            if (!EventUtils.isAllowedBreakBlock(event.getPlayer(), block)) {
+                return;
+            }
+
             BlockData blockData = block.getBlockData();
             BlockState blockState = block.getState();
             List<String> blockStates = new ArrayList<>();
 
-            if (blockData instanceof Directional && PluginConfig.isAllowBlockState("directional")) {
+            if (blockData instanceof Directional && SurvivalDebugStick.getPluginConfig().isAllowBlockState("directional")) {
                 blockStates.add("directional");
             }
-            if (blockData instanceof Orientable && PluginConfig.isAllowBlockState("orientable")) {
+            if (blockData instanceof Orientable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("orientable")) {
                 blockStates.add("orientable");
             }
-            if (blockData instanceof Powerable && PluginConfig.isAllowBlockState("powerable")) {
+            if (blockData instanceof Powerable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("powerable")) {
                 blockStates.add("powerable");
             }
-            if (blockData instanceof Waterlogged && PluginConfig.isAllowBlockState("waterlogged")) {
+            if (blockData instanceof Waterlogged && SurvivalDebugStick.getPluginConfig().isAllowBlockState("waterlogged")) {
                 blockStates.add("waterlogged");
             }
-            if (blockData instanceof Bisected && PluginConfig.isAllowBlockState("bisected")) {
+            if (blockData instanceof Bisected && SurvivalDebugStick.getPluginConfig().isAllowBlockState("bisected")) {
                 blockStates.add("bisected");
             }
-            if (blockData instanceof Ageable && PluginConfig.isAllowBlockState("ageable")) {
+            if (blockData instanceof Ageable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("ageable")) {
                 blockStates.add("ageable");
             }
-            if (blockData instanceof Rail && PluginConfig.isAllowBlockState("rail")) {
+            if (blockData instanceof Rail && SurvivalDebugStick.getPluginConfig().isAllowBlockState("rail")) {
                 blockStates.add("rail");
             }
-            if (blockData instanceof Rotatable && PluginConfig.isAllowBlockState("rotatable")) {
+            if (blockData instanceof Rotatable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("rotatable")) {
                 blockStates.add("rotatable");
             }
-            if (blockData instanceof Stairs && PluginConfig.isAllowBlockState("stairs")) {
+            if (blockData instanceof Stairs && SurvivalDebugStick.getPluginConfig().isAllowBlockState("stairs")) {
                 blockStates.add("stairs");
             }
-            if (blockData instanceof Bed && PluginConfig.isAllowBlockState("bed")) {
+            if (blockData instanceof Bed && SurvivalDebugStick.getPluginConfig().isAllowBlockState("bed")) {
                 blockStates.add("bed");
             }
-            if (blockData instanceof Chest && PluginConfig.isAllowBlockState("chest")) {
+            if (blockData instanceof Chest && SurvivalDebugStick.getPluginConfig().isAllowBlockState("chest")) {
                 blockStates.add("chest");
             }
-            if (blockData instanceof Cake && PluginConfig.isAllowBlockState("cake")) {
+            if (blockData instanceof Cake && SurvivalDebugStick.getPluginConfig().isAllowBlockState("cake")) {
                 blockStates.add("cake");
             }
-            if (blockData instanceof Bamboo && PluginConfig.isAllowBlockState("bamboo")) {
+            if (blockData instanceof Bamboo && SurvivalDebugStick.getPluginConfig().isAllowBlockState("bamboo")) {
                 blockStates.add("bamboo");
             }
-            if (blockData instanceof Openable && PluginConfig.isAllowBlockState("openable")) {
+            if (blockData instanceof Openable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("openable")) {
                 blockStates.add("openable");
             }
-            if (blockData instanceof Beehive && PluginConfig.isAllowBlockState("beehive")) {
+            if (blockData instanceof Beehive && SurvivalDebugStick.getPluginConfig().isAllowBlockState("beehive")) {
                 blockStates.add("beehive");
             }
-            if (blockData instanceof Bell && PluginConfig.isAllowBlockState("bell")) {
+            if (blockData instanceof Bell && SurvivalDebugStick.getPluginConfig().isAllowBlockState("bell")) {
                 blockStates.add("bell");
             }
-            if (blockData instanceof BigDripleaf && PluginConfig.isAllowBlockState("big_dripleaf")) {
+            if (blockData instanceof BigDripleaf && SurvivalDebugStick.getPluginConfig().isAllowBlockState("big_dripleaf")) {
                 blockStates.add("big_dripleaf");
             }
-            if (blockData instanceof Lightable && PluginConfig.isAllowBlockState("lightable")) {
+            if (blockData instanceof Lightable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("lightable")) {
                 blockStates.add("lightable");
             }
-            if (blockData instanceof BrewingStand && PluginConfig.isAllowBlockState("brewing_stand_bottles")) {
+            if (blockData instanceof BrewingStand && SurvivalDebugStick.getPluginConfig().isAllowBlockState("brewing_stand_bottles")) {
                 blockStates.add("brewing_stand_bottle_0");
                 blockStates.add("brewing_stand_bottle_1");
                 blockStates.add("brewing_stand_bottle_2");
             }
-            if (blockData instanceof FaceAttachable && PluginConfig.isAllowBlockState("face_attachable")) {
+            if (blockData instanceof FaceAttachable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("face_attachable")) {
                 blockStates.add("face_attachable");
             }
-            if (blockData instanceof Campfire && PluginConfig.isAllowBlockState("campfire")) {
+            if (blockData instanceof Campfire && SurvivalDebugStick.getPluginConfig().isAllowBlockState("campfire")) {
                 blockStates.add("campfire");
             }
-            if (blockData instanceof Candle && PluginConfig.isAllowBlockState("candle")) {
+            if (blockData instanceof Candle && SurvivalDebugStick.getPluginConfig().isAllowBlockState("candle")) {
                 blockStates.add("candle");
             }
-            if (blockData instanceof Levelled && PluginConfig.isAllowBlockState("levelled")) {
+            if (blockData instanceof Levelled && SurvivalDebugStick.getPluginConfig().isAllowBlockState("levelled")) {
                 blockStates.add("levelled");
             }
-            if (blockData instanceof ChiseledBookshelf && PluginConfig.isAllowBlockState("chiseled_bookshelf_slots")) {
+            if (blockData instanceof ChiseledBookshelf && SurvivalDebugStick.getPluginConfig().isAllowBlockState("chiseled_bookshelf_slots")) {
                 blockStates.add("chiseled_bookshelf_slot_0");
                 blockStates.add("chiseled_bookshelf_slot_1");
                 blockStates.add("chiseled_bookshelf_slot_2");
@@ -119,103 +122,103 @@ public class BlockClickListener implements Listener {
                 blockStates.add("chiseled_bookshelf_slot_4");
                 blockStates.add("chiseled_bookshelf_slot_5");
             }
-            if (blockData instanceof Wall && PluginConfig.isAllowBlockState("wall")) {
+            if (blockData instanceof Wall && SurvivalDebugStick.getPluginConfig().isAllowBlockState("wall")) {
                 blockStates.add("wall_north");
                 blockStates.add("wall_east");
                 blockStates.add("wall_south");
                 blockStates.add("wall_west");
                 blockStates.add("wall_up");
             }
-            if (blockData instanceof MultipleFacing && PluginConfig.isAllowBlockState("multiple_facing")) {
+            if (blockData instanceof MultipleFacing && SurvivalDebugStick.getPluginConfig().isAllowBlockState("multiple_facing")) {
                 MultipleFacing multipleFacing = (MultipleFacing) blockData;
                 List<BlockFace> faces = new ArrayList<>(multipleFacing.getAllowedFaces());
                 for (BlockFace face : faces) {
                     blockStates.add("multiple_facing_" + face.toString().toLowerCase());
                 }
             }
-            if (blockData instanceof Attachable && PluginConfig.isAllowBlockState("attachable")) {
+            if (blockData instanceof Attachable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("attachable")) {
                 blockStates.add("attachable");
             }
-            if (blockData instanceof Gate && PluginConfig.isAllowBlockState("gate")) {
+            if (blockData instanceof Gate && SurvivalDebugStick.getPluginConfig().isAllowBlockState("gate")) {
                 blockStates.add("gate");
             }
-            if (blockData instanceof Snowable && PluginConfig.isAllowBlockState("snowable")) {
+            if (blockData instanceof Snowable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("snowable")) {
                 blockStates.add("snowable");
             }
-            if (blockData instanceof Hangable && PluginConfig.isAllowBlockState("hangable")) {
+            if (blockData instanceof Hangable && SurvivalDebugStick.getPluginConfig().isAllowBlockState("hangable")) {
                 blockStates.add("hangable");
             }
             if (blockData instanceof NoteBlock) {
-                if (PluginConfig.isAllowBlockState("noteblock_note")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("noteblock_note")) {
                     blockStates.add("noteblock_note");
                 }
-                if (PluginConfig.isAllowBlockState("noteblock_instrument")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("noteblock_instrument")) {
                     blockStates.add("noteblock_instrument");
                 }
             }
-            if (blockData instanceof PinkPetals && PluginConfig.isAllowBlockState("pink_petals")) {
+            if (blockData instanceof PinkPetals && SurvivalDebugStick.getPluginConfig().isAllowBlockState("pink_petals")) {
                 blockStates.add("pink_petals");
             }
-            if (blockData instanceof Piston && PluginConfig.isAllowBlockState("piston")) {
+            if (blockData instanceof Piston && SurvivalDebugStick.getPluginConfig().isAllowBlockState("piston")) {
                 blockStates.add("piston");
             }
             if (blockData instanceof PistonHead) {
-                if (PluginConfig.isAllowBlockState("piston_head_type")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("piston_head_type")) {
                     blockStates.add("piston_head_type");
                 }
-                if (PluginConfig.isAllowBlockState("piston_head_short")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("piston_head_short")) {
                     blockStates.add("piston_head_short");
                 }
             }
-            if (blockData instanceof PointedDripstone && PluginConfig.isAllowBlockState("dripstone_thickness")) {
+            if (blockData instanceof PointedDripstone && SurvivalDebugStick.getPluginConfig().isAllowBlockState("dripstone_thickness")) {
                 blockStates.add("dripstone_thickness");
             }
-            if (blockData instanceof Comparator && PluginConfig.isAllowBlockState("comparator")) {
+            if (blockData instanceof Comparator && SurvivalDebugStick.getPluginConfig().isAllowBlockState("comparator")) {
                 blockStates.add("comparator");
             }
-            if (blockData instanceof RedstoneWire && PluginConfig.isAllowBlockState("redstone_wire")) {
+            if (blockData instanceof RedstoneWire && SurvivalDebugStick.getPluginConfig().isAllowBlockState("redstone_wire")) {
                 blockStates.add("redstone_wire_north");
                 blockStates.add("redstone_wire_east");
                 blockStates.add("redstone_wire_south");
                 blockStates.add("redstone_wire_west");
             }
             if (blockData instanceof Repeater) {
-                if (PluginConfig.isAllowBlockState("repeater_delay")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("repeater_delay")) {
                     blockStates.add("repeater_delay");
                 }
-                if (PluginConfig.isAllowBlockState("repeater_locked")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("repeater_locked")) {
                     blockStates.add("repeater_locked");
                 }
             }
-            if (blockData instanceof RespawnAnchor && PluginConfig.isAllowBlockState("respawn_anchor")) {
+            if (blockData instanceof RespawnAnchor && SurvivalDebugStick.getPluginConfig().isAllowBlockState("respawn_anchor")) {
                 blockStates.add("charges");
             }
-            if (blockData instanceof Scaffolding && PluginConfig.isAllowBlockState("scaffolding")) {
+            if (blockData instanceof Scaffolding && SurvivalDebugStick.getPluginConfig().isAllowBlockState("scaffolding")) {
                 blockStates.add("scaffolding");
             }
-            if (blockData instanceof SculkCatalyst && PluginConfig.isAllowBlockState("sculk_catalyst")) {
+            if (blockData instanceof SculkCatalyst && SurvivalDebugStick.getPluginConfig().isAllowBlockState("sculk_catalyst")) {
                 blockStates.add("sculk_catalyst");
             }
-            if (blockData instanceof SculkSensor && PluginConfig.isAllowBlockState("sculk_sensor")) {
+            if (blockData instanceof SculkSensor && SurvivalDebugStick.getPluginConfig().isAllowBlockState("sculk_sensor")) {
                 blockStates.add("sculk_sensor");
             }
-            if (blockData instanceof SculkShrieker && PluginConfig.isAllowBlockState("sculk_shrieker")) {
+            if (blockData instanceof SculkShrieker && SurvivalDebugStick.getPluginConfig().isAllowBlockState("sculk_shrieker")) {
                 blockStates.add("sculk_shrieker");
             }
-            if (blockData instanceof SeaPickle && PluginConfig.isAllowBlockState("sea_pickle")) {
+            if (blockData instanceof SeaPickle && SurvivalDebugStick.getPluginConfig().isAllowBlockState("sea_pickle")) {
                 blockStates.add("sea_pickle");
             }
-            if (blockData instanceof Slab && PluginConfig.isAllowBlockState("slab")) {
+            if (blockData instanceof Slab && SurvivalDebugStick.getPluginConfig().isAllowBlockState("slab")) {
                 blockStates.add("slab");
             }
-            if (blockData instanceof Snow && PluginConfig.isAllowBlockState("snow")) {
+            if (blockData instanceof Snow && SurvivalDebugStick.getPluginConfig().isAllowBlockState("snow")) {
                 blockStates.add("snow");
             }
             if (blockData instanceof TurtleEgg) {
-                if (PluginConfig.isAllowBlockState("turtle_egg_hatch")) {
+                if (SurvivalDebugStick.getPluginConfig().isAllowBlockState("turtle_egg_hatch")) {
                     blockStates.add("turtle_egg_hatch");
                 }
-                if(PluginConfig.isAllowBlockState("turtle_egg_eggs")) {
+                if(SurvivalDebugStick.getPluginConfig().isAllowBlockState("turtle_egg_eggs")) {
                     blockStates.add("turtle_egg_eggs");
                 }
             }
@@ -234,7 +237,7 @@ public class BlockClickListener implements Listener {
                         int newValue = ((value + 1) % maxValue);
                         newBlockData.setHatch(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("turtle_egg_eggs")) {
                         TurtleEgg newBlockData = (TurtleEgg) blockData;
@@ -243,7 +246,7 @@ public class BlockClickListener implements Listener {
                         int newValue = ((value) % maxValue) + 1;
                         newBlockData.setEggs(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("snow")) {
                         Snow newBlockData = (Snow) blockData;
@@ -252,7 +255,7 @@ public class BlockClickListener implements Listener {
                         int newValue = ((value) % maxValue) + 1;
                         newBlockData.setLayers(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("slab")) {
                         Slab newBlockData = (Slab) blockData;
@@ -264,7 +267,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Slab.Type> states = new ArrayList<>();
                         for (Slab.Type state : statesArray) {
-                            if (PluginConfig.isAllowedState("slab", state.toString())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("slab", state.toString())) {
                                 states.add(state);
                             } else {
                                 if (state == value) {
@@ -278,7 +281,7 @@ public class BlockClickListener implements Listener {
                         Slab.Type newValue = states.get(newIndex);
                         newBlockData.setType(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("sea_pickle")) {
                         SeaPickle newBlockData = (SeaPickle) blockData;
@@ -287,14 +290,14 @@ public class BlockClickListener implements Listener {
                         int newValue = ((value) % maxValue) + 1;
                         newBlockData.setPickles(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("sculk_shrieker")) {
                         SculkShrieker newBlockData = (SculkShrieker) blockData;
                         boolean newValue = !newBlockData.isShrieking();
                         newBlockData.setCanSummon(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("sculk_sensor")) {
                         SculkSensor newBlockData = (SculkSensor) blockData;
@@ -306,7 +309,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<SculkSensor.Phase> states = new ArrayList<>();
                         for (SculkSensor.Phase state : statesArray) {
-                            if (PluginConfig.isAllowedState("sculk_sensor", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("sculk_sensor", state.toString().toLowerCase())) {
                                 states.add(state);
                             } else {
                                 if (state == value) {
@@ -320,7 +323,7 @@ public class BlockClickListener implements Listener {
                         SculkSensor.Phase newValue = states.get(newIndex);
                         newBlockData.setPhase(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("sculk_catalyst")) {
                         SculkCatalyst newBlockData = (SculkCatalyst) blockData;
@@ -328,7 +331,7 @@ public class BlockClickListener implements Listener {
                         newBlockData.setBloom(newValue);
 
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("scaffolding")) {
                         Scaffolding newBlockData = (Scaffolding) blockData;
@@ -336,7 +339,7 @@ public class BlockClickListener implements Listener {
                         newBlockData.setBottom(newValue);
 
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("charges")) {
                         RespawnAnchor newBlockData = (RespawnAnchor) blockData;
@@ -346,7 +349,7 @@ public class BlockClickListener implements Listener {
                         newBlockData.setCharges(newValue);
 
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("repeater_locked")) {
                         Repeater newBlockData = (Repeater) blockData;
@@ -354,7 +357,7 @@ public class BlockClickListener implements Listener {
                         newBlockData.setLocked(newValue);
 
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("repeater_delay")) {
                         Repeater newBlockData = (Repeater) blockData;
@@ -376,7 +379,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> values = new ArrayList<>();
                         for (RedstoneWire.Connection state : valuesArray) {
-                            if (PluginConfig.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -390,7 +393,7 @@ public class BlockClickListener implements Listener {
                         RedstoneWire.Connection newValue = values.get(newIndex);
                         newBlockData.setFace(BlockFace.WEST, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("redstone_wire_south")) {
                         RedstoneWire newBlockData = (RedstoneWire) blockData;
@@ -402,7 +405,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> values = new ArrayList<>();
                         for (RedstoneWire.Connection state : valueArray) {
-                            if (PluginConfig.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -416,7 +419,7 @@ public class BlockClickListener implements Listener {
                         RedstoneWire.Connection newValue = values.get(newIndex);
                         newBlockData.setFace(BlockFace.SOUTH, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("redstone_wire_east")) {
                         RedstoneWire newBlockData = (RedstoneWire) blockData;
@@ -428,7 +431,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> values = new ArrayList<>();
                         for (RedstoneWire.Connection state : valuesArray) {
-                            if (PluginConfig.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -442,7 +445,7 @@ public class BlockClickListener implements Listener {
                         RedstoneWire.Connection newValue = values.get(newIndex);
                         newBlockData.setFace(BlockFace.EAST, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("redstone_wire_north")) {
                         RedstoneWire newBlockData = (RedstoneWire) blockData;
@@ -454,7 +457,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<RedstoneWire.Connection> values = new ArrayList<>();
                         for (RedstoneWire.Connection state : valuesArray) {
-                            if (PluginConfig.isAllowedState("redstone_wire", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("redstone_wire", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -468,7 +471,7 @@ public class BlockClickListener implements Listener {
                         RedstoneWire.Connection newValue = values.get(newIndex);
                         newBlockData.setFace(BlockFace.NORTH, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("comparator")) {
@@ -480,7 +483,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Comparator.Mode> values = new ArrayList<>();
                         for (Comparator.Mode state : valuesArray) {
-                            if (PluginConfig.isAllowedState("comparator", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("comparator", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -494,7 +497,7 @@ public class BlockClickListener implements Listener {
                         Comparator.Mode newValue = values.get(newIndex);
                         newBlockData.setMode(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("dripstone_thickness")) {
                         PointedDripstone newBlockData = (PointedDripstone) blockData;
@@ -508,7 +511,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<PointedDripstone.Thickness> values = new ArrayList<>();
                         for (PointedDripstone.Thickness state : valuesArray) {
-                            if (PluginConfig.isAllowedState("dripstone_thickness", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("dripstone_thickness", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -522,7 +525,7 @@ public class BlockClickListener implements Listener {
                         PointedDripstone.Thickness newValue = values.get(newIndex);
                         newBlockData.setThickness(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("piston_head_type")) {
                         PistonHead newBlockData = (PistonHead) blockData;
@@ -533,7 +536,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<PistonHead.Type> values = new ArrayList<>();
                         for (PistonHead.Type state : valuesArray) {
-                            if (PluginConfig.isAllowedState("piston_head_type", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("piston_head_type", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -547,21 +550,21 @@ public class BlockClickListener implements Listener {
                         PistonHead.Type newValue = values.get(newIndex);
                         newBlockData.setType(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("piston_head_short")) {
                         PistonHead newBlockData = (PistonHead) blockData;
                         boolean newValue = !newBlockData.isShort();
                         newBlockData.setShort(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("piston")) {
                         Piston newBlockData = (Piston) blockData;
                         boolean newValue = !newBlockData.isExtended();
                         newBlockData.setExtended(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("pink_petals")) {
                         PinkPetals newBlockData = (PinkPetals) blockData;
@@ -570,7 +573,7 @@ public class BlockClickListener implements Listener {
                         int newValue = (value + 1) % maxValue;
                         newBlockData.setFlowerAmount(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("noteblock_instrument")) {
                         NoteBlock newBlockData = (NoteBlock) blockData;
@@ -602,7 +605,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Instrument> values = new ArrayList<>();
                         for (Instrument state : valuesArray) {
-                            if (PluginConfig.isAllowedState("noteblock_instrument", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("noteblock_instrument", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -616,7 +619,7 @@ public class BlockClickListener implements Listener {
                         Instrument newValue = values.get(newIndex);
                         newBlockData.setInstrument(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("noteblock_note")) {
                         NoteBlock newBlockData = (NoteBlock) blockData;
@@ -626,84 +629,84 @@ public class BlockClickListener implements Listener {
                         newBlockData.setNote(Note.natural(newValue, newBlockData.getNote().getTone()));
 
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("hangable")) {
                         Hangable newBlockData = (Hangable) blockData;
                         boolean newValue = !newBlockData.isHanging();
                         newBlockData.setHanging(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("snowable")) {
                         Snowable newBlockData = (Snowable) blockData;
                         boolean newValue = !newBlockData.isSnowy();
                         newBlockData.setSnowy(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("gate")) {
                         Gate newBlockData = (Gate) blockData;
                         boolean newValue = !newBlockData.isInWall();
                         newBlockData.setInWall(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("attachable")) {
                         Attachable newBlockData = (Attachable) blockData;
                         boolean newValue = !newBlockData.isAttached();
                         newBlockData.setAttached(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("multiple_facing_down")) {
                         MultipleFacing newBlockData = (MultipleFacing) blockData;
                         boolean newValue = !newBlockData.hasFace(BlockFace.DOWN);
                         newBlockData.setFace(BlockFace.DOWN, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("multiple_facing_up")) {
                         MultipleFacing newBlockData = (MultipleFacing) blockData;
                         boolean newValue = !newBlockData.hasFace(BlockFace.UP);
                         newBlockData.setFace(BlockFace.UP, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("multiple_facing_west")) {
                         MultipleFacing newBlockData = (MultipleFacing) blockData;
                         boolean newValue = !newBlockData.hasFace(BlockFace.WEST);
                         newBlockData.setFace(BlockFace.WEST, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("multiple_facing_south")) {
                         MultipleFacing newBlockData = (MultipleFacing) blockData;
                         boolean newValue = !newBlockData.hasFace(BlockFace.SOUTH);
                         newBlockData.setFace(BlockFace.SOUTH, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("multiple_facing_east")) {
                         MultipleFacing newBlockData = (MultipleFacing) blockData;
                         boolean newValue = !newBlockData.hasFace(BlockFace.EAST);
                         newBlockData.setFace(BlockFace.EAST, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("multiple_facing_north")) {
                         MultipleFacing newBlockData = (MultipleFacing) blockData;
                         boolean newValue = !newBlockData.hasFace(BlockFace.NORTH);
                         newBlockData.setFace(BlockFace.NORTH, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("wall_up")) {
                         Wall newBlockData = (Wall) blockData;
                         boolean newValue = !newBlockData.isUp();
                         newBlockData.setUp(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("wall_west")) {
                         Wall newBlockData = (Wall) blockData;
@@ -715,7 +718,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> values = new ArrayList<>();
                         for (Wall.Height state : valuesArray) {
-                            if (PluginConfig.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("wall", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -729,7 +732,7 @@ public class BlockClickListener implements Listener {
                         Wall.Height newValue = values.get(newIndex);
                         newBlockData.setHeight(BlockFace.WEST, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("wall_south")) {
                         Wall newBlockData = (Wall) blockData;
@@ -741,7 +744,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> values = new ArrayList<>();
                         for (Wall.Height state : valuesArray) {
-                            if (PluginConfig.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("wall", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -755,7 +758,7 @@ public class BlockClickListener implements Listener {
                         Wall.Height newValue = values.get(newIndex);
                         newBlockData.setHeight(BlockFace.SOUTH, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("wall_east")) {
                         Wall newBlockData = (Wall) blockData;
@@ -767,7 +770,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> values = new ArrayList<>();
                         for (Wall.Height state : valuesArray) {
-                            if (PluginConfig.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("wall", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -781,7 +784,7 @@ public class BlockClickListener implements Listener {
                         Wall.Height newValue = values.get(newIndex);
                         newBlockData.setHeight(BlockFace.EAST, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("wall_north")) {
                         Wall newBlockData = (Wall) blockData;
@@ -793,7 +796,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Wall.Height> values = new ArrayList<>();
                         for (Wall.Height state : valuesArray) {
-                            if (PluginConfig.isAllowedState("wall", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("wall", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -807,56 +810,56 @@ public class BlockClickListener implements Listener {
                         Wall.Height newValue = values.get(newIndex);
                         newBlockData.setHeight(BlockFace.NORTH, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chiseled_bookshelf_slot_5")) {
                         ChiseledBookshelf newBlockData = (ChiseledBookshelf) blockData;
                         boolean newValue = !newBlockData.isSlotOccupied(5);
                         newBlockData.setSlotOccupied(5, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chiseled_bookshelf_slot_4")) {
                         ChiseledBookshelf newBlockData = (ChiseledBookshelf) blockData;
                         boolean newValue = !newBlockData.isSlotOccupied(4);
                         newBlockData.setSlotOccupied(4, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chiseled_bookshelf_slot_3")) {
                         ChiseledBookshelf newBlockData = (ChiseledBookshelf) blockData;
                         boolean newValue = !newBlockData.isSlotOccupied(3);
                         newBlockData.setSlotOccupied(3, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chiseled_bookshelf_slot_2")) {
                         ChiseledBookshelf newBlockData = (ChiseledBookshelf) blockData;
                         boolean newValue = !newBlockData.isSlotOccupied(2);
                         newBlockData.setSlotOccupied(2, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chiseled_bookshelf_slot_1")) {
                         ChiseledBookshelf newBlockData = (ChiseledBookshelf) blockData;
                         boolean newValue = !newBlockData.isSlotOccupied(1);
                         newBlockData.setSlotOccupied(1, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chiseled_bookshelf_slot_0")) {
                         ChiseledBookshelf newBlockData = (ChiseledBookshelf) blockData;
                         boolean newValue = !newBlockData.isSlotOccupied(0);
                         newBlockData.setSlotOccupied(0, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("cave_wines")) {
                         CaveVines newBlockData = (CaveVines) blockData;
                         boolean newValue = !newBlockData.isBerries();
                         newBlockData.setBerries(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("levelled")) {
@@ -870,7 +873,7 @@ public class BlockClickListener implements Listener {
                         int newValue = ((value + 1) % maxValue) + offset;
                         newBlockData.setLevel(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("candle")) {
                         Candle newBlockData = (Candle) blockData;
@@ -879,14 +882,14 @@ public class BlockClickListener implements Listener {
                         int newValue = (value + 1) % maxValue;
                         newBlockData.setCandles(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("campfire")) {
                         Campfire newBlockData = (Campfire) blockData;
                         boolean newValue = !newBlockData.isSignalFire();
                         newBlockData.setSignalFire(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("face_attachable")) {
@@ -899,7 +902,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<FaceAttachable.AttachedFace> values = new ArrayList<>();
                         for (FaceAttachable.AttachedFace state : valuesArray) {
-                            if (PluginConfig.isAllowedState("face_attachable", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("face_attachable", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -913,7 +916,7 @@ public class BlockClickListener implements Listener {
                         FaceAttachable.AttachedFace newValue = values.get(newIndex);
                         newBlockData.setAttachedFace(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("brewing_stand_bottle_2")) {
@@ -921,21 +924,21 @@ public class BlockClickListener implements Listener {
                         boolean newValue = !newBlockData.hasBottle(2);
                         newBlockData.setBottle(2, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("brewing_stand_bottle_1")) {
                         BrewingStand newBlockData = (BrewingStand) blockData;
                         boolean newValue = !newBlockData.hasBottle(1);
                         newBlockData.setBottle(1, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("brewing_stand_bottle_0")) {
                         BrewingStand newBlockData = (BrewingStand) blockData;
                         boolean newValue = !newBlockData.hasBottle(0);
                         newBlockData.setBottle(0, newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("lightable")) {
@@ -943,7 +946,7 @@ public class BlockClickListener implements Listener {
                         boolean newValue = !newBlockData.isLit();
                         newBlockData.setLit(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("big_dripleaf")) {
@@ -957,7 +960,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<BigDripleaf.Tilt> values = new ArrayList<>();
                         for (BigDripleaf.Tilt state : valuesArray) {
-                            if (PluginConfig.isAllowedState("big_dripleaf", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("big_dripleaf", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -971,7 +974,7 @@ public class BlockClickListener implements Listener {
                         BigDripleaf.Tilt newValue = values.get(newIndex);
                         newBlockData.setTilt(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
 
@@ -986,7 +989,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bell.Attachment> values = new ArrayList<>();
                         for (Bell.Attachment state : valuesArray) {
-                            if (PluginConfig.isAllowedState("bell", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("bell", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1000,7 +1003,7 @@ public class BlockClickListener implements Listener {
                         Bell.Attachment newValue = values.get(newIndex);
                         newBlockData.setAttachment(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("beehive")) {
@@ -1010,7 +1013,7 @@ public class BlockClickListener implements Listener {
                         int newValue = (value + 1) % maxValue;
                         newBlockData.setHoneyLevel(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("openable")) {
@@ -1018,7 +1021,7 @@ public class BlockClickListener implements Listener {
                         boolean newValue = !newBlockData.isOpen();
                         newBlockData.setOpen(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("bamboo")) {
@@ -1031,7 +1034,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bamboo.Leaves> values = new ArrayList<>();
                         for (Bamboo.Leaves state : valuesArray) {
-                            if (PluginConfig.isAllowedState("bamboo", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("bamboo", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1045,7 +1048,7 @@ public class BlockClickListener implements Listener {
                         Bamboo.Leaves newValue = values.get(newIndex);
                         newBlockData.setLeaves(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("cake")) {
                         Cake newBlockData = (Cake) blockData;
@@ -1054,7 +1057,7 @@ public class BlockClickListener implements Listener {
                         int newValue = (value + 1) % maxValue;
                         newBlockData.setBites(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("chest")) {
                         Chest newBlockData = (Chest) blockData;
@@ -1066,7 +1069,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Chest.Type> values = new ArrayList<>();
                         for (Chest.Type state : valuesArray) {
-                            if (PluginConfig.isAllowedState("chest", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("chest", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1080,7 +1083,7 @@ public class BlockClickListener implements Listener {
                         Chest.Type newValue = values.get(newIndex);
                         newBlockData.setType(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
 
                     }
                     if (blockStateKey.equalsIgnoreCase("bed")) {
@@ -1092,7 +1095,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bed.Part> values = new ArrayList<>();
                         for (Bed.Part state : valuesArray) {
-                            if (PluginConfig.isAllowedState("bed", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("bed", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1106,7 +1109,7 @@ public class BlockClickListener implements Listener {
                         Bed.Part newValue = values.get(newIndex);
                         newBlockData.setPart(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
                     if (blockStateKey.equalsIgnoreCase("directional")) {
                         Directional newBlockData = (Directional) blockData;
@@ -1115,7 +1118,7 @@ public class BlockClickListener implements Listener {
 
                         List<BlockFace> values = new ArrayList<>();
                         for (BlockFace state : valuesArray) {
-                            if (PluginConfig.isAllowedState("bed", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("bed", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1129,7 +1132,7 @@ public class BlockClickListener implements Listener {
                         BlockFace newValue = values.get(newIndex);
                         newBlockData.setFacing(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("rotatable")) {
@@ -1155,7 +1158,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<BlockFace> values = new ArrayList<>();
                         for (BlockFace state : valuesArray) {
-                            if (PluginConfig.isAllowedState("rotatable", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("rotatable", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1169,7 +1172,7 @@ public class BlockClickListener implements Listener {
                         BlockFace newValue = values.get(newIndex);
                         newBlockData.setRotation(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("orientable")) {
@@ -1178,7 +1181,7 @@ public class BlockClickListener implements Listener {
                         Axis[] valuesArray = newBlockData.getAxes().toArray(new Axis[0]);
                         List<Axis> values = new ArrayList<>();
                         for (Axis state : valuesArray) {
-                            if (PluginConfig.isAllowedState("orientable.axis", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("orientable.axis", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == axis) {
@@ -1192,7 +1195,7 @@ public class BlockClickListener implements Listener {
                         Axis newValue = values.get(newIndex);
                         newBlockData.setAxis(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("bisected")) {
@@ -1204,7 +1207,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Bisected.Half> values = new ArrayList<>();
                         for (Bisected.Half state : valuesArray) {
-                            if (PluginConfig.isAllowedState("bisected.half", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("bisected.half", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1218,7 +1221,7 @@ public class BlockClickListener implements Listener {
                         Bisected.Half newValue = values.get(newIndex);
                         newBlockData.setHalf(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("waterlogged")) {
@@ -1226,7 +1229,7 @@ public class BlockClickListener implements Listener {
                         boolean newValue = !newBlockData.isWaterlogged();
                         newBlockData.setWaterlogged(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("powerable")) {
@@ -1234,7 +1237,7 @@ public class BlockClickListener implements Listener {
                         boolean newValue = !newBlockData.isPowered();
                         newBlockData.setPowered(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("ageable")) {
@@ -1244,7 +1247,7 @@ public class BlockClickListener implements Listener {
                         int newValue = (value + 1) % maxValue;
                         newBlockData.setAge(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("rail")) {
@@ -1253,7 +1256,7 @@ public class BlockClickListener implements Listener {
                         Rail.Shape[] valuesArray = newBlockData.getShapes().toArray(new Rail.Shape[0]);
                         List<Rail.Shape> values = new ArrayList<>();
                         for (Rail.Shape state : valuesArray) {
-                            if (PluginConfig.isAllowedState("rail.shape", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("rail.shape", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1267,7 +1270,7 @@ public class BlockClickListener implements Listener {
                         Rail.Shape newValue = values.get(newIndex);
                         newBlockData.setShape(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
                     if (blockStateKey.equalsIgnoreCase("stairs")) {
@@ -1282,7 +1285,7 @@ public class BlockClickListener implements Listener {
                         };
                         List<Stairs.Shape> values = new ArrayList<>();
                         for (Stairs.Shape state : valuesArray) {
-                            if (PluginConfig.isAllowedState("stairs.shape", state.toString().toLowerCase())) {
+                            if (SurvivalDebugStick.getPluginConfig().isAllowedState("stairs.shape", state.toString().toLowerCase())) {
                                 values.add(state);
                             } else {
                                 if (state == value) {
@@ -1296,13 +1299,13 @@ public class BlockClickListener implements Listener {
                         Stairs.Shape newValue = values.get(newIndex);
                         newBlockData.setShape(newValue);
                         blockState.setBlockData(newBlockData);
-                        event.getPlayer().sendActionBar(Language.getActionBarMessage(blockStateKey, String.valueOf(newValue)));
+                        event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStateKey, String.valueOf(newValue)));
                     }
 
 
                 } else if (event.getAction().isLeftClick()) {
                     blockStateIndex = (blockStateIndex + 1) % blockStates.size();
-                    event.getPlayer().sendActionBar(blockStates.get(blockStateIndex));
+                    event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStates.get(blockStateIndex)));
                 }
             }
 

@@ -1,6 +1,7 @@
 package de.janschuri.SurvivalDebugStick.utils;
 
-import de.janschuri.lunaticlib.logger.AbstractLogger;
+
+import de.janschuri.lunaticlib.common.logger.AbstractLogger;
 
 public class Logger extends AbstractLogger {
 

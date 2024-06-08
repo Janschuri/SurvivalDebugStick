@@ -2,25 +2,35 @@ package de.janschuri.SurvivalDebugStick.commands.subcommands;
 
 import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
 import de.janschuri.SurvivalDebugStick.commands.Subcommand;
-import de.janschuri.lunaticlib.senders.AbstractSender;
+import de.janschuri.lunaticlib.CommandMessageKey;
+import de.janschuri.lunaticlib.Sender;
 
 public class ReloadSubcommand extends Subcommand {
 
-    private static final String MAIN_COMMAND = "survivaldebugstick";
-    private static final String PERMISSION = "survivaldebugstick.admin";
-    private static final String NAME = "reload";
+    CommandMessageKey configReloadedMK = new CommandMessageKey(this, "config_reloaded");
 
-    protected ReloadSubcommand() {
-        super(MAIN_COMMAND, NAME, PERMISSION);
+    @Override
+    public String getPermission() {
+        return "survivaldebugstick.admin";
     }
 
     @Override
-    public boolean execute(AbstractSender sender, String[] strings) {
-        if (!sender.hasPermission(PERMISSION)) {
-            sender.sendMessage(language.getPrefix() + language.getMessage("no_permission"));
+    public String getName() {
+        return "reload";
+    }
+
+    @Override
+    public SurvivalDebugStickSubcommand getParentCommand() {
+        return new SurvivalDebugStickSubcommand();
+    }
+
+    @Override
+    public boolean execute(Sender sender, String[] strings) {
+        if (!sender.hasPermission(getPermission())) {
+            sender.sendMessage(getMessage(NO_PERMISSION_MK));
         } else {
             SurvivalDebugStick.loadConfig();
-            sender.sendMessage(language.getPrefix() + language.getMessage("config_reloaded"));
+            sender.sendMessage(getMessage(configReloadedMK));
         }
         return true;
     }
