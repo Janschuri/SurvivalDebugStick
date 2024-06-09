@@ -56,6 +56,10 @@ block_states:
   snow: "&7Schnee"
   turtle_egg_hatch: "&7Schildkrötenei "
   turtle_egg_eggs: "&7Schildkröteneier"
+  multiple_facing_east: "&7Mehrfachausrichtung (Osten)"
+  multiple_facing_west: "&7Mehrfachausrichtung (Westen)"
+  multiple_facing_north: "&7Mehrfachausrichtung (Norden)"
+  multiple_facing_south: "&7Mehrfachausrichtung (Süden)"
 block_states_enum:
   north_north_east: "&aNord-Nord-Ost"
   north_east: "&aNord-Ost"

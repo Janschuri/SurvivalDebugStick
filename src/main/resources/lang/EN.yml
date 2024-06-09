@@ -56,6 +56,10 @@ block_states:
   snow: "&7Snow"
   turtle_egg_hatch: "&7Turtle Egg Hatches"
   turtle_egg_eggs: "&7Turtle Eggs"
+  multiple_facing_east: "&7Multiple Facing (East)"
+  multiple_facing_west: "&7Multiple Facing (West)"
+  multiple_facing_north: "&7Multiple Facing (North)"
+  multiple_facing_south: "&7Multiple Facing (South)"
 block_states_enum:
   north_north_east: "&aNorth-North-East"
   north_east: "&aNorth-East"

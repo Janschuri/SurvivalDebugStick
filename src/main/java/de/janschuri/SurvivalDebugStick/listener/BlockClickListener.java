@@ -7,37 +7,38 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.*;
+import org.bukkit.block.data.type.Comparator;
 import org.bukkit.block.data.type.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BlockClickListener implements Listener {
 
-    boolean processingClickEvent = false;
-    int blockStateIndex = 0;
+    private Map<UUID, Integer> playerBlockStateIndex = new HashMap<>();
+    private List<UUID> playerProcessingClickEvent = new ArrayList<>();
     private final SurvivalDebugStick plugin;
 
     public BlockClickListener(SurvivalDebugStick plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
-    @EventHandler
+
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getClickedBlock() != null
                 && event.getPlayer().getItemInHand().getItemMeta() != null
                 && event.getPlayer().getItemInHand().getItemMeta().getPersistentDataContainer().has(SurvivalDebugStick.KEY_STICK)) {
+            Player player = event.getPlayer();
+            UUID uuid = player.getUniqueId();
             event.setCancelled(true);
-            if (processingClickEvent) return;
-            processingClickEvent = true;
+            if (playerProcessingClickEvent.contains(uuid)) return;
+            playerProcessingClickEvent.add(uuid);
             Block block = event.getClickedBlock();
-
-            if (!EventUtils.isAllowedBreakBlock(event.getPlayer(), block)) {
-                return;
-            }
 
             BlockData blockData = block.getBlockData();
             BlockState blockState = block.getState();
@@ -223,10 +224,18 @@ public class BlockClickListener implements Listener {
                 }
             }
 
-
+            int blockStateIndex = playerBlockStateIndex.getOrDefault(event.getPlayer().getUniqueId(), 0);
 
             if (!blockStates.isEmpty()) {
                 if (event.getAction().isRightClick()) {
+
+                    if (!EventUtils.isAllowedPlaceBlock(event.getPlayer(), block)) {
+                        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                            playerProcessingClickEvent.remove(uuid);
+                        }, 5L);
+                        return;
+                    }
+
                     blockStateIndex = (blockStateIndex) % blockStates.size();
                     String blockStateKey = blockStates.get(blockStateIndex);
 
@@ -1306,16 +1315,17 @@ public class BlockClickListener implements Listener {
                 } else if (event.getAction().isLeftClick()) {
                     blockStateIndex = (blockStateIndex + 1) % blockStates.size();
                     event.getPlayer().sendActionBar(SurvivalDebugStick.getLanguageConfig().getActionBarMessage(blockStates.get(blockStateIndex)));
+                    playerBlockStateIndex.put(event.getPlayer().getUniqueId(), blockStateIndex);
                 }
             }
 
 
             blockState.update(false, false);
-        }
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            processingClickEvent = false;
-        }, 1L);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                playerProcessingClickEvent.remove(uuid);
+            }, 1L);
+        }
     }
 }
 
