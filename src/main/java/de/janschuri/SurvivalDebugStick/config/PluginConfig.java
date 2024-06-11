@@ -7,7 +7,6 @@ import java.util.*;
 
 public class PluginConfig extends LunaticConfigImpl {
 
-    private boolean whitelist = false;
     private final Map<String, Set<String>> blockedStates = new HashMap<>();
     private Map<String, Boolean> blockStates = new HashMap<>();
     private String language = "EN";
@@ -21,7 +20,6 @@ public class PluginConfig extends LunaticConfigImpl {
         super.load();
 
         language = getString("language");
-        whitelist = getBoolean("invert_list");
         blockStates = getBooleanMap("block_states");
 
 
@@ -47,19 +45,10 @@ public class PluginConfig extends LunaticConfigImpl {
     }
 
     public boolean isAllowedState(String stateEnum, String state) {
-        if (whitelist) {
-            if (blockedStates.containsKey(stateEnum)) {
-                return blockedStates.get(stateEnum).contains(state);
-            } else {
-                return false;
-            }
+        if (blockedStates.containsKey(stateEnum)) {
+            return !blockedStates.get(stateEnum).contains(state);
         } else {
-            if (blockedStates.containsKey(stateEnum)) {
-                return !blockedStates.get(stateEnum).contains(state);
-            } else {
-                return true;
-            }
-
+            return true;
         }
     }
 

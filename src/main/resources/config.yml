@@ -51,6 +51,5 @@ block_states:
   snow: false
   turtle_egg_hatch: false
   turtle_egg_eggs: false
-invert_list: false #turns blocked states into a whitelist
 blocked_states:
   - slab.double
