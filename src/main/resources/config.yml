@@ -52,6 +52,5 @@ block_states:
   turtle_egg_hatch: false
   turtle_egg_eggs: false
 invert_list: false #turns blocked states into a whitelist
-stick_item: blaze_rod
 blocked_states:
   - slab.double

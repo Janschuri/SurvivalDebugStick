@@ -160,7 +160,7 @@ commands:
           - stick
         messages:
           help: "&6%/command% %subcommand% &7- Gib dir einen Debug-Stick."
-          stick_given: "&aDu hast den Debug-Stick erhalten."
+          stick_given: "&aDas Item in deiner Hand ist jetzt ein SurvivalDebugStick."
       help:
         aliases:
           - help

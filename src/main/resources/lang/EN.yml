@@ -79,6 +79,8 @@ block_states_enum:
   north: "&aNorth"
   up: "&aUp"
   down: "&aDown"
+  top: "&aTop"
+  bottom: "&aBottom"
   side: "&aSide"
   none: "&aNone"
   low: "&aLow"
@@ -160,7 +162,7 @@ commands:
           - stick
         messages:
           help: "&6/%command% %subcommand% &7- Get the SurvivalDebugStick."
-          stick_given: "&aYou have received the SurvivalDebugStick."
+          stick_given: "&aThe item in your hand is now the SurvivalDebugStick."
       help:
         aliases:
           - help

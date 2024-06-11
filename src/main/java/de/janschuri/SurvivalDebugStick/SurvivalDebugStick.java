@@ -5,6 +5,7 @@ import de.janschuri.SurvivalDebugStick.config.LanguageConfig;
 import de.janschuri.SurvivalDebugStick.config.PluginConfig;
 import de.janschuri.SurvivalDebugStick.listener.BlockClickListener;
 import de.janschuri.lunaticlib.platform.bukkit.PlatformImpl;
+import de.janschuri.lunaticlib.platform.bukkit.external.Metrics;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,7 +14,7 @@ import java.nio.file.Path;
 public final class SurvivalDebugStick extends JavaPlugin {
 
     public static final String PLUGIN_NAMESPACE = "survivaldebugstick";
-    public static final NamespacedKey KEY_STICK = new NamespacedKey(PLUGIN_NAMESPACE, "invs");
+    public static final NamespacedKey KEY_STICK = new NamespacedKey(PLUGIN_NAMESPACE, "stick");
     private static Path dataDirectory;
 
     private static LanguageConfig languageConfig;
@@ -27,6 +28,9 @@ public final class SurvivalDebugStick extends JavaPlugin {
     @Override
     public void onEnable() {
         dataDirectory = getDataFolder().toPath();
+
+        int pluginId = 22241;
+        Metrics metrics = new Metrics(this, pluginId);
 
         loadConfig();
         getServer().getPluginManager().registerEvents(new BlockClickListener(this), this);

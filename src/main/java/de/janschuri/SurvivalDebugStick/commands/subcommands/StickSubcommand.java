@@ -38,16 +38,12 @@ public class StickSubcommand extends Subcommand {
             sender.sendMessage(getMessage(NO_PERMISSION_MK));
         } else {
             PlayerSender player = (PlayerSender) sender;
-            ItemStack item = new ItemStack(SurvivalDebugStick.getPluginConfig().getStorageItem());
-
-            int[] invs = new int[]{};
+            Player p = Bukkit.getPlayer(player.getUniqueId());
+            ItemStack item = p.getInventory().getItemInMainHand();
 
             ItemMeta meta = item.getItemMeta();
-            meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.INTEGER_ARRAY, invs);
+            meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.BOOLEAN, true);
             item.setItemMeta(meta);
-
-            Player p = Bukkit.getPlayer(player.getUniqueId());
-            p.getInventory().addItem(item);
 
             player.sendMessage(getMessage(stickGivenMK));
 

@@ -1,14 +1,12 @@
 package de.janschuri.SurvivalDebugStick.config;
 
 import de.janschuri.lunaticlib.common.config.LunaticConfigImpl;
-import org.bukkit.Material;
 
 import java.nio.file.Path;
 import java.util.*;
 
 public class PluginConfig extends LunaticConfigImpl {
 
-    private String stick_item;
     private boolean whitelist = false;
     private final Map<String, Set<String>> blockedStates = new HashMap<>();
     private Map<String, Boolean> blockStates = new HashMap<>();
@@ -23,7 +21,6 @@ public class PluginConfig extends LunaticConfigImpl {
         super.load();
 
         language = getString("language");
-        stick_item = getString("stick_item");
         whitelist = getBoolean("invert_list");
         blockStates = getBooleanMap("block_states");
 
@@ -68,9 +65,5 @@ public class PluginConfig extends LunaticConfigImpl {
 
     public boolean isAllowBlockState (String blockState){
         return blockStates.get(blockState);
-    }
-
-    public Material getStorageItem() {
-        return Material.valueOf(stick_item.toUpperCase());
     }
 }
