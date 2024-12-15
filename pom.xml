@@ -6,7 +6,7 @@
 
   <groupId>de.janschuri</groupId>
   <artifactId>SurvivalDebugStick</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <name>SurvivalDebugStick</name>
@@ -70,7 +70,7 @@
       <dependency>
           <groupId>de.janschuri</groupId>
           <artifactId>lunaticlib</artifactId>
-          <version>1.1.2</version>
+          <version>1.2.3</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
