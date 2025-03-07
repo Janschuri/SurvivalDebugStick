@@ -4,10 +4,20 @@ import de.janschuri.SurvivalDebugStick.SurvivalDebugStick;
 import de.janschuri.SurvivalDebugStick.commands.Subcommand;
 import de.janschuri.lunaticlib.CommandMessageKey;
 import de.janschuri.lunaticlib.Sender;
+import de.janschuri.lunaticlib.common.command.HasParentCommand;
+import de.janschuri.lunaticlib.common.config.LunaticCommandMessageKey;
 
-public class ReloadSubcommand extends Subcommand {
+import java.util.Map;
 
-    CommandMessageKey configReloadedMK = new CommandMessageKey(this, "config_reloaded");
+public class ReloadSubcommand extends Subcommand implements HasParentCommand {
+
+    private static final ReloadSubcommand INSTANCE = new ReloadSubcommand();
+    private static final CommandMessageKey HELP_MK = new LunaticCommandMessageKey(INSTANCE, "help")
+            .defaultMessage("en", "&6/%command% %subcommand% &7- Reload the config.")
+            .defaultMessage("de", "&6/%command% %subcommand% &7- Lade die Konfiguration neu.");
+    private static final CommandMessageKey CONFIG_RELOADED_MK = new LunaticCommandMessageKey(INSTANCE, "config_reloaded")
+            .defaultMessage("en", "&aConfig reloaded.")
+            .defaultMessage("de", "&aKonfiguration neu geladen.");
 
     @Override
     public String getPermission() {
@@ -30,8 +40,15 @@ public class ReloadSubcommand extends Subcommand {
             sender.sendMessage(getMessage(NO_PERMISSION_MK));
         } else {
             SurvivalDebugStick.loadConfig();
-            sender.sendMessage(getMessage(configReloadedMK));
+            sender.sendMessage(getMessage(CONFIG_RELOADED_MK));
         }
         return true;
+    }
+
+    @Override
+    public Map<CommandMessageKey, String> getHelpMessages() {
+        return Map.of(
+                HELP_MK, getPermission()
+        );
     }
 }

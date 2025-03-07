@@ -1,12 +1,12 @@
 package de.janschuri.SurvivalDebugStick.config;
 
-import de.janschuri.lunaticlib.common.config.LunaticLanguageConfigImpl;
+import de.janschuri.lunaticlib.common.config.LunaticLanguageConfig;
 
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LanguageConfig extends LunaticLanguageConfigImpl {
+public class LanguageConfig extends LunaticLanguageConfig {
 
     private Map<String, String> blockStates = new HashMap<>();
     private Map<String, String> blockStatesEnum = new HashMap<>();
@@ -20,6 +20,11 @@ public class LanguageConfig extends LunaticLanguageConfigImpl {
 
         blockStates = getStringMap("block_states");
         blockStatesEnum = getStringMap("block_states_enum");
+    }
+
+    @Override
+    protected String getPackage() {
+        return "de.janschuri.SurvivalDebugStick";
     }
 
     private String getBlockState(String key) {
