@@ -7,7 +7,6 @@ import de.janschuri.lunaticlib.MessageKey;
 import de.janschuri.lunaticlib.Sender;
 import de.janschuri.lunaticlib.common.command.HasHelpCommand;
 import de.janschuri.lunaticlib.common.command.HasSubcommands;
-import de.janschuri.lunaticlib.common.command.LunaticHelpCommand;
 import de.janschuri.lunaticlib.common.config.LunaticCommandMessageKey;
 
 import java.util.List;
@@ -68,7 +67,14 @@ public class SurvivalDebugStickSubcommand extends Subcommand implements HasSubco
 
     @Override
     public Map<CommandMessageKey, String> getHelpMessages() {
-        return Map.of();
+        return Map.of(
+                HELP_MK, getPermission()
+        );
+    }
+
+    @Override
+    public boolean isPrimaryCommand() {
+        return true;
     }
 
     @Override
