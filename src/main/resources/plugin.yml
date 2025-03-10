@@ -1,7 +1,7 @@
 name: SurvivalDebugStick
 version: '${project.version}'
 main: de.janschuri.SurvivalDebugStick.SurvivalDebugStick
-api-version: '1.19'
+api-version: '1.20'
 depend:
   - LunaticLib
 commands:
