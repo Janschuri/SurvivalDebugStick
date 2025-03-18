@@ -5,15 +5,25 @@ import de.janschuri.SurvivalDebugStick.commands.Subcommand;
 import de.janschuri.lunaticlib.CommandMessageKey;
 import de.janschuri.lunaticlib.PlayerSender;
 import de.janschuri.lunaticlib.Sender;
+import de.janschuri.lunaticlib.common.command.HasParentCommand;
+import de.janschuri.lunaticlib.common.config.LunaticCommandMessageKey;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-public class StickSubcommand extends Subcommand {
+import java.util.Map;
 
-    CommandMessageKey stickGivenMK = new CommandMessageKey(this, "stick_given");
+public class StickSubcommand extends Subcommand implements HasParentCommand {
+
+    private static final StickSubcommand INSTANCE = new StickSubcommand();
+    private static final CommandMessageKey HELP_MK = new LunaticCommandMessageKey(INSTANCE, "help")
+            .defaultMessage("en", "&6/%command% %subcommand% &7- Get the SurvivalDebugStick.")
+            .defaultMessage("de", "&6/%command% %subcommand% &7- Erhalte den SurvivalDebugStick.");
+    private static final CommandMessageKey STICK_GIVEN_MK = new LunaticCommandMessageKey(INSTANCE, "stick_given")
+            .defaultMessage("en", "&aYou have been given the SurvivalDebugStick.")
+            .defaultMessage("de", "&aDu hast den SurvivalDebugStick erhalten.");
 
     @Override
     public String getName() {
@@ -42,12 +52,19 @@ public class StickSubcommand extends Subcommand {
             ItemStack item = p.getInventory().getItemInMainHand();
 
             ItemMeta meta = item.getItemMeta();
-            meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.BOOLEAN, true);
+            meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.INTEGER, 1);
             item.setItemMeta(meta);
 
-            player.sendMessage(getMessage(stickGivenMK));
+            player.sendMessage(getMessage(STICK_GIVEN_MK));
 
         }
         return true;
+    }
+
+    @Override
+    public Map<CommandMessageKey, String> getHelpMessages() {
+        return Map.of(
+                HELP_MK, getPermission()
+        );
     }
 }

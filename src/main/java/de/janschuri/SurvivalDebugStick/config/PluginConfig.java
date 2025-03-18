@@ -1,11 +1,11 @@
 package de.janschuri.SurvivalDebugStick.config;
 
-import de.janschuri.lunaticlib.common.config.LunaticConfigImpl;
+import de.janschuri.lunaticlib.common.config.LunaticConfig;
 
 import java.nio.file.Path;
 import java.util.*;
 
-public class PluginConfig extends LunaticConfigImpl {
+public class PluginConfig extends LunaticConfig {
 
     private final Map<String, Set<String>> blockedStates = new HashMap<>();
     private Map<String, Boolean> blockStates = new HashMap<>();
@@ -13,11 +13,11 @@ public class PluginConfig extends LunaticConfigImpl {
 
 
     public PluginConfig(Path dataDirectory) {
-        super(dataDirectory, "config.yml", "config.yml");
+        super(dataDirectory, "config.yml");
     }
 
     public void load() {
-        super.load();
+        super.load("config.yml");
 
         language = getString("language");
         blockStates = getBooleanMap("block_states");
