@@ -8,6 +8,7 @@ import de.janschuri.lunaticlib.Sender;
 import de.janschuri.lunaticlib.common.command.HasParentCommand;
 import de.janschuri.lunaticlib.common.config.LunaticCommandMessageKey;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -50,6 +51,10 @@ public class StickSubcommand extends Subcommand implements HasParentCommand {
             PlayerSender player = (PlayerSender) sender;
             Player p = Bukkit.getPlayer(player.getUniqueId());
             ItemStack item = p.getInventory().getItemInMainHand();
+
+            if (item == null || item.getType() == Material.AIR) {
+                item = new ItemStack(Material.BLAZE_ROD);
+            }
 
             ItemMeta meta = item.getItemMeta();
             meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.INTEGER, 1);
