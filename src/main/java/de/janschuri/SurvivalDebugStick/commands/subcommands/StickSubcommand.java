@@ -52,13 +52,21 @@ public class StickSubcommand extends Subcommand implements HasParentCommand {
             Player p = Bukkit.getPlayer(player.getUniqueId());
             ItemStack item = p.getInventory().getItemInMainHand();
 
+            boolean addItem = false;
+
+
             if (item == null || item.getType() == Material.AIR) {
+                addItem = true;
                 item = new ItemStack(Material.BLAZE_ROD);
             }
 
             ItemMeta meta = item.getItemMeta();
             meta.getPersistentDataContainer().set(SurvivalDebugStick.KEY_STICK, PersistentDataType.INTEGER, 1);
             item.setItemMeta(meta);
+
+            if (addItem) {
+                p.getInventory().addItem(item);
+            }
 
             player.sendMessage(getMessage(STICK_GIVEN_MK));
 
